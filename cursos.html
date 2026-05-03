@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cursos & Formação | Academia LGPD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .cursos-hero { background: var(--navy); color: white; padding: 72px 0 56px; }
+    .cursos-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); margin-bottom:12px; }
+    .cursos-hero h1 em { color:var(--gold); font-style:normal; }
+    .cursos-hero p { color:rgba(255,255,255,.7); font-size:1.05rem; max-width:560px; }
+    .nivel-badge { display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:16px; }
+    .nivel-0 { background:rgba(46,125,50,.25); color:#81c784; }
+    .nivel-1 { background:rgba(201,168,76,.25); color:var(--gold-light); }
+    .nivel-2 { background:rgba(183,28,28,.25); color:#ef9a9a; }
+    .curso-full-card { background:var(--white); border:1px solid var(--gray-border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
+    .curso-full-card + .curso-full-card { margin-top:32px; }
+    .curso-card-inner { display:grid; grid-template-columns:1fr 320px; }
+    .curso-body { padding:36px; }
+    .curso-body h2 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--navy); margin-bottom:8px; }
+    .curso-body .desc { color:var(--text-muted); font-size:.95rem; margin-bottom:24px; line-height:1.7; }
+    .modulos-list { list-style:none; margin-bottom:24px; }
+    .modulos-list li { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; font-size:.9rem; }
+    .modulos-list li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; margin-top:1px; }
+    .curso-sidebar { background:var(--navy); padding:36px; display:flex; flex-direction:column; justify-content:center; gap:16px; }
+    .curso-preco { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--gold); }
+    .curso-preco small { font-size:.9rem; color:rgba(255,255,255,.5); font-family:inherit; }
+    .curso-sidebar p { color:rgba(255,255,255,.6); font-size:.85rem; }
+    .curso-sidebar .btn { width:100%; justify-content:center; }
+    @media(max-width:760px){ .curso-card-inner{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div class="topbar"><span>📋 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Leia mais</a></span><span class="topbar-right">📧 adriano.israel@live.com</span></div>
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="lgpd-descomplicada.html" class="nav-link">LGPD Descomplicada</a>
+        <a href="noticias.html" class="nav-link">Jurisprudência & Notícias</a>
+        <a href="downloads.html" class="nav-link">Downloads</a>
+        <a href="glossario.html" class="nav-link">Glossário</a>
+        <a href="cursos.html" class="nav-link nav-cta active">Cursos & Formação</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="cursos-hero">
+    <div class="container">
+      <div class="hero-badge">🎓 Academia LGPD</div>
+      <h1>Formações <em>Práticas</em><br>em Proteção de Dados</h1>
+      <p>Três níveis de formação para servidores públicos, Encarregados (DPOs) e consultores. Do básico à implementação completa.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- NÍVEL 1 -->
+      <div class="curso-full-card">
+        <div class="curso-card-inner">
+          <div class="curso-body">
+            <span class="nivel-badge nivel-0">Nível 1 · Gratuito</span>
+            <h2>LGPD Essencial para Servidores Públicos</h2>
+            <p class="desc">Formação de conscientização desenvolvida especificamente para o funcionalismo público. Aborda desde o conceito de dado pessoal até as responsabilidades individuais de cada servidor no tratamento de informações de cidadãos.</p>
+            <ul class="modulos-list">
+              <li>O que é a LGPD e por que o setor público precisa se adequar</li>
+              <li>Identificando dados pessoais no dia a dia do serviço público</li>
+              <li>Responsabilidades do servidor e o que pode dar errado</li>
+              <li>Boas práticas: mesa limpa, senhas seguras e compartilhamento de dados</li>
+              <li>Certificado de conclusão digital</li>
+            </ul>
+            <a href="mailto:adriano.israel@live.com" class="btn btn-primary">Quero me inscrever gratuitamente</a>
+          </div>
+          <div class="curso-sidebar">
+            <div class="curso-preco">Grátis <small>/ acesso vitalício</small></div>
+            <p>🎯 Para servidores públicos municipais e estaduais</p>
+            <p>📆 4 horas · 100% online e assíncrono</p>
+            <p>📜 Certificado incluso</p>
+            <p>👥 +200 servidores já concluíram</p>
+            <a href="mailto:adriano.israel@live.com" class="btn btn-white">Acessar agora →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NÍVEL 2 -->
+      <div class="curso-full-card">
+        <div class="curso-card-inner">
+          <div class="curso-body">
+            <span class="nivel-badge nivel-1">Nível 2 · Formação Profissional</span>
+            <h2>DPO Master: Da Teoria à Nomeação</h2>
+            <p class="desc">Formação completa para quem quer atuar como Encarregado de Proteção de Dados (DPO). Cobre todos os aspectos jurídicos, técnicos e operacionais da função, com workshop prático de elaboração de RIPD.</p>
+            <ul class="modulos-list">
+              <li><strong>Módulo 1:</strong> Base Jurídica e Administrativa — A lei e suas particularidades</li>
+              <li><strong>Módulo 2:</strong> Segurança da Informação para DPOs — O que você precisa saber</li>
+              <li><strong>Módulo 3:</strong> Gestão de Incidentes e Relacionamento com a ANPD</li>
+              <li><strong>Módulo 4:</strong> Mapeamento de dados e Relatório de Impacto (DPIA/RIPD)</li>
+              <li><strong>Workshop Prático:</strong> Elaboração completa de um RIPD real</li>
+              <li>Mentoria em grupo por 30 dias pós-curso</li>
+            </ul>
+            <a href="mailto:adriano.israel@live.com" class="btn btn-primary">Garantir minha vaga</a>
+          </div>
+          <div class="curso-sidebar">
+            <div class="curso-preco">R$&nbsp;997 <small>/ acesso vitalício</small></div>
+            <p>🎯 Para advogados, técnicos de TI e gestores</p>
+            <p>📆 20 horas · Online com workshops ao vivo</p>
+            <p>📜 Certificado + Carta de Nomeação modelo</p>
+            <p>🤝 Mentoria em grupo inclusa</p>
+            <a href="mailto:adriano.israel@live.com" class="btn btn-white">Matricular-me →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- NÍVEL 3 -->
+      <div class="curso-full-card">
+        <div class="curso-card-inner">
+          <div class="curso-body">
+            <span class="nivel-badge nivel-2">Nível 3 · Avançado</span>
+            <h2>Metodologia de Implementação 360°</h2>
+            <p class="desc">Programa avançado para profissionais que querem vender consultoria de adequação à LGPD. Você aprende a metodologia completa de implementação e sai com um modelo de negócio estruturado para oferecer o serviço ao mercado.</p>
+            <ul class="modulos-list">
+              <li>Diagnóstico e proposta comercial: como precificar adequação</li>
+              <li>Fases da implementação: do diagnóstico à manutenção contínua</li>
+              <li>Inventário de dados, mapeamento de fluxos e RoPA</li>
+              <li>Elaboração de políticas, avisos de privacidade e contratos</li>
+              <li>Treinamento de equipes e plano de conscientização</li>
+              <li>Gestão de incidentes e notificação à ANPD</li>
+              <li>Como montar e escalar uma consultoria de privacidade</li>
+            </ul>
+            <a href="mailto:adriano.israel@live.com" class="btn btn-primary">Quero ser consultor LGPD</a>
+          </div>
+          <div class="curso-sidebar">
+            <div class="curso-preco">R$&nbsp;2.497 <small>/ acesso vitalício</small></div>
+            <p>🎯 Para advogados, consultores e técnicos de TI</p>
+            <p>📆 40 horas · Online + consultoria supervisionada</p>
+            <p>📜 Certificado + Metodologia proprietária</p>
+            <p>💼 Modelo de proposta comercial incluso</p>
+            <a href="mailto:adriano.israel@live.com" class="btn btn-white">Falar com Adriano →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cronograma -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header"><h2>Cronograma de Lançamento</h2></div>
+      <div class="trilha-grid">
+        <div class="trilha-card"><div class="trilha-num">Mês 1</div><h3>Fundamentos & Diagnóstico</h3><p>Lançamento do E-book Grátis: Checklist da Fase 1. Conteúdo sobre mapeamento de dados e diagnóstico inicial.</p></div>
+        <div class="trilha-card"><div class="trilha-num">Mês 2</div><h3>Segurança da Informação</h3><p>Webinar gratuito: Como proteger a rede da sua Câmara Municipal. Abertura de turma piloto do Nível 1.</p></div>
+        <div class="trilha-card"><div class="trilha-num">Mês 3</div><h3>Formação de DPO</h3><p>Abertura das matrículas: Curso Formação DPO Master. Primeiras turmas com desconto de lançamento.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container footer-grid"><div><div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div><p class="footer-desc">Conteúdo especializado em LGPD para o Brasil.</p></div><div><h4>Seções</h4><ul><li><a href="lgpd-descomplicada.html">LGPD Descomplicada</a></li><li><a href="noticias.html">Jurisprudência</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="glossario.html">Glossário</a></li><li><a href="cursos.html">Cursos</a></li></ul></div><div><h4>Contato</h4><ul><li>✉️ adriano.israel@live.com</li><li>📸 @adrianoisrael7</li><li>📍 Mato Grosso do Sul, Brasil</li></ul></div></div><div class="footer-bottom"><p>© 2025 Blog LGPD · Adriano Israel · Todos os direitos reservados</p></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>

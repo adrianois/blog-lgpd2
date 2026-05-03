@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Glossário LGPD | Blog LGPD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .glossario-search { background:var(--gray-bg); padding:40px 0; }
+    .search-box { display:flex; gap:12px; max-width:560px; }
+    .search-box input { flex:1; padding:12px 18px; border:1px solid var(--gray-border); border-radius:var(--radius); font-size:.95rem; font-family:inherit; }
+    .search-box input:focus { outline:2px solid var(--gold); border-color:transparent; }
+    .alfa-nav { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:32px; }
+    .alfa-nav a { width:34px; height:34px; display:flex; align-items:center; justify-content:center; border:1px solid var(--gray-border); border-radius:var(--radius); font-size:.85rem; font-weight:600; color:var(--navy); transition:.2s; }
+    .alfa-nav a:hover, .alfa-nav a.active { background:var(--gold); border-color:var(--gold); color:var(--navy); }
+    .glossario-group { margin-bottom:40px; }
+    .glossario-letra { font-family:'Playfair Display',serif; font-size:2rem; color:var(--gold); font-weight:900; border-bottom:2px solid var(--gold); display:inline-block; padding-bottom:4px; margin-bottom:20px; min-width:40px; text-align:center; }
+    .termo-card { background:var(--white); border:1px solid var(--gray-border); border-left:3px solid var(--gold); border-radius:var(--radius); padding:18px 22px; margin-bottom:12px; }
+    .termo-card h3 { font-size:1rem; font-weight:700; color:var(--navy); margin-bottom:6px; }
+    .termo-card p { font-size:.88rem; color:var(--text-muted); line-height:1.65; }
+    .termo-tag { display:inline-block; font-size:.65rem; font-weight:700; text-transform:uppercase; letter-spacing:.06em; padding:2px 8px; border-radius:2px; margin-left:8px; background:rgba(201,168,76,.12); color:var(--gold); vertical-align:middle; }
+  </style>
+</head>
+<body>
+  <div class="topbar"><span>📋 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Leia mais</a></span><span class="topbar-right">📧 adriano.israel@live.com</span></div>
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="lgpd-descomplicada.html" class="nav-link">LGPD Descomplicada</a>
+        <a href="noticias.html" class="nav-link">Jurisprudência & Notícias</a>
+        <a href="downloads.html" class="nav-link">Downloads</a>
+        <a href="glossario.html" class="nav-link active">Glossário</a>
+        <a href="cursos.html" class="nav-link nav-cta">Cursos & Formação</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="hero-badge">📖 Referência</div>
+      <h1>Glossário <em>LGPD</em></h1>
+      <p>Todos os termos técnicos da proteção de dados explicados de forma clara e objetiva.</p>
+    </div>
+  </section>
+
+  <section class="glossario-search">
+    <div class="container">
+      <div class="search-box">
+        <input type="text" id="searchTermo" placeholder="Buscar termo (ex: DPO, DPIA, consentimento)..." />
+        <button class="btn btn-primary" onclick="filtrarTermos()">Buscar</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="alfa-nav">
+        <a href="#A" class="active">A</a><a href="#B">B</a><a href="#C">C</a><a href="#D">D</a>
+        <a href="#E">E</a><a href="#F">F</a><a href="#G">G</a><a href="#I">I</a>
+        <a href="#L">L</a><a href="#M">M</a><a href="#O">O</a><a href="#P">P</a>
+        <a href="#R">R</a><a href="#S">S</a><a href="#T">T</a><a href="#V">V</a>
+      </div>
+
+      <div id="listaTermos">
+        <div class="glossario-group" id="A">
+          <div class="glossario-letra">A</div>
+          <div class="termo-card"><h3>ANPD — Autoridade Nacional de Proteção de Dados <span class="termo-tag">Órgão</span></h3><p>Órgão da administração pública federal responsável por zelar pela proteção dos dados pessoais, fiscalizar o cumprimento da LGPD e aplicar sanções administrativas.</p></div>
+          <div class="termo-card"><h3>Anonimização</h3><p>Processo pelo qual um dado perde a possibilidade de associação, direta ou indireta, a um indivíduo. Dados anonimizados não são considerados dados pessoais pela LGPD.</p></div>
+          <div class="termo-card"><h3>Agentes de Tratamento</h3><p>São o controlador e o operador — as pessoas naturais ou jurídicas responsáveis pelo tratamento de dados pessoais.</p></div>
+          <div class="termo-card"><h3>Autoridade</h3><p>Denominação usada na LGPD para se referir à ANPD quando no exercício de suas atribuições de fiscalização e normatização.</p></div>
+        </div>
+
+        <div class="glossario-group" id="B">
+          <div class="glossario-letra">B</div>
+          <div class="termo-card"><h3>Base Legal</h3><p>Fundamento jurídico que autoriza o tratamento de dados pessoais. A LGPD prevê 10 bases legais, como consentimento, cumprimento de obrigação legal, execução de contrato, interesse legítimo, entre outros.</p></div>
+          <div class="termo-card"><h3>Banco de Dados</h3><p>Conjunto estruturado de dados pessoais, estabelecido em um ou em vários locais, em suporte eletrônico ou físico.</p></div>
+        </div>
+
+        <div class="glossario-group" id="C">
+          <div class="glossario-letra">C</div>
+          <div class="termo-card"><h3>Consentimento</h3><p>Manifestação livre, informada e inequívoca pela qual o titular concorda com o tratamento de seus dados pessoais para uma finalidade determinada. É apenas uma das 10 bases legais da LGPD.</p></div>
+          <div class="termo-card"><h3>Controlador</h3><p>Pessoa natural ou jurídica, de direito público ou privado, a quem competem as decisões referentes ao tratamento de dados pessoais.</p></div>
+          <div class="termo-card"><h3>Cookies</h3><p>Arquivos de texto armazenados no dispositivo do usuário por sites visitados. Cookies que coletam dados pessoais estão sujeitos às regras da LGPD.</p></div>
+          <div class="termo-card"><h3>Ciclo de Vida do Dado</h3><p>Todas as etapas pelas quais um dado pessoal passa: coleta, armazenamento, uso, compartilhamento e descarte.</p></div>
+        </div>
+
+        <div class="glossario-group" id="D">
+          <div class="glossario-letra">D</div>
+          <div class="termo-card"><h3>Dado Pessoal</h3><p>Informação relacionada a pessoa natural identificada ou identificável. Ex: nome, CPF, e-mail, endereço IP, localização, dados de saúde.</p></div>
+          <div class="termo-card"><h3>Dado Sensível <span class="termo-tag">Atenção</span></h3><p>Dado pessoal sobre origem racial ou étnica, convicção religiosa, opinião política, saúde, vida sexual, dado genético ou biométrico. Recebe proteção reforçada pela LGPD.</p></div>
+          <div class="termo-card"><h3>DPIA — Data Protection Impact Assessment</h3><p>Também chamado de RIPD (Relatório de Impacto à Proteção de Dados Pessoais). Documento que descreve os processos de tratamento de dados que podem gerar riscos às liberdades civis e avalia as medidas de mitigação.</p></div>
+          <div class="termo-card"><h3>DPO — Data Protection Officer <span class="termo-tag">Cargo</span></h3><p>Encarregado de Proteção de Dados. Pessoa indicada pelo controlador para atuar como canal de comunicação entre controlador, titulares e ANPD. Pode ser interno ou externo.</p></div>
+        </div>
+
+        <div class="glossario-group" id="E">
+          <div class="glossario-letra">E</div>
+          <div class="termo-card"><h3>Encarregado</h3><p>Termo em português para DPO. Pessoa natural ou jurídica indicada pelo controlador para exercer as funções de proteção de dados previstas no art. 41 da LGPD.</p></div>
+          <div class="termo-card"><h3>Eliminação</h3><p>Direito do titular de solicitar a exclusão de seus dados pessoais tratados com base no consentimento, quando esse tratamento for desnecessário, excessivo ou tratar dados em desconformidade com a lei.</p></div>
+        </div>
+
+        <div class="glossario-group" id="I">
+          <div class="glossario-letra">I</div>
+          <div class="termo-card"><h3>Incidente de Segurança</h3><p>Qualquer evento adverso confirmado relacionado à violação da segurança de dados pessoais: vazamentos, acessos não autorizados, destruição acidental ou ilegal de dados.</p></div>
+          <div class="termo-card"><h3>Interesse Legítimo <span class="termo-tag">Base Legal</span></h3><p>Uma das bases legais da LGPD que permite o tratamento de dados quando necessário para atender aos interesses legítimos do controlador ou de terceiros, desde que não prevaleçam sobre os direitos e liberdades do titular.</p></div>
+        </div>
+
+        <div class="glossario-group" id="L">
+          <div class="glossario-letra">L</div>
+          <div class="termo-card"><h3>LGPD — Lei Geral de Proteção de Dados</h3><p>Lei nº 13.709/2018 que regula o tratamento de dados pessoais por pessoas naturais ou jurídicas no Brasil. Vigente desde setembro de 2020, com sanções desde agosto de 2021.</p></div>
+          <div class="termo-card"><h3>LIA — Legitimate Interest Assessment</h3><p>Avaliação de Interesse Legítimo. Processo documentado para avaliar se o interesse legítimo do controlador justifica o tratamento de dados, considerando os riscos para o titular.</p></div>
+        </div>
+
+        <div class="glossario-group" id="O">
+          <div class="glossario-letra">O</div>
+          <div class="termo-card"><h3>Operador</h3><p>Pessoa natural ou jurídica, de direito público ou privado, que realiza o tratamento de dados pessoais em nome do controlador. Age conforme as instruções do controlador.</p></div>
+        </div>
+
+        <div class="glossario-group" id="P">
+          <div class="glossario-letra">P</div>
+          <div class="termo-card"><h3>Portabilidade</h3><p>Direito do titular de receber seus dados pessoais em formato estruturado, de uso corrente e de leitura automática, e de transferi-los a outro controlador.</p></div>
+          <div class="termo-card"><h3>Privacy by Design</h3><p>Princípio que exige a incorporação de medidas de privacidade e proteção de dados desde o início do desenvolvimento de produtos, serviços e processos.</p></div>
+          <div class="termo-card"><h3>Pseudonimização</h3><p>Tratamento pelo qual um dado perde a possibilidade de associação direta a um indivíduo, podendo ser revertido com uso de informação adicional mantida separadamente.</p></div>
+        </div>
+
+        <div class="glossario-group" id="R">
+          <div class="glossario-letra">R</div>
+          <div class="termo-card"><h3>RIPD — Relatório de Impacto à Proteção de Dados Pessoais</h3><p>Equivalente brasileiro do DPIA. Documento exigido pela ANPD em situações de tratamento de dados que podem gerar riscos às liberdades civis dos titulares.</p></div>
+          <div class="termo-card"><h3>RoPA — Record of Processing Activities</h3><p>Registro das Atividades de Tratamento. Inventário detalhado de todos os tratamentos de dados realizados pela organização. Ferramenta central de conformidade.</p></div>
+        </div>
+
+        <div class="glossario-group" id="T">
+          <div class="glossario-letra">T</div>
+          <div class="termo-card"><h3>Titular <span class="termo-tag">Central</span></h3><p>Pessoa natural a quem se referem os dados pessoais que são objeto de tratamento. É o sujeito principal protegido pela LGPD.</p></div>
+          <div class="termo-card"><h3>Tratamento de Dados</h3><p>Toda operação realizada com dados pessoais: coleta, produção, recepção, classificação, utilização, acesso, reprodução, transmissão, distribuição, processamento, arquivamento, armazenamento, eliminação, avaliação, controle, modificação, comunicação, transferência, difusão ou extração.</p></div>
+        </div>
+
+        <div class="glossario-group" id="V">
+          <div class="glossario-letra">V</div>
+          <div class="termo-card"><h3>Vazamento de Dados</h3><p>Incidente de segurança que resulta na divulgação não autorizada ou no acesso indevido a dados pessoais. Deve ser comunicado à ANPD e ao titular quando houver risco ou dano relevante.</p></div>
+          <div class="termo-card"><h3>Vulnerabilidade</h3><p>Fraqueza em sistemas, processos ou controles que pode ser explorada por uma ameaça, causando uma violação de segurança e eventual exposição de dados pessoais.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container footer-grid"><div><div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div><p class="footer-desc">Conteúdo especializado em LGPD para o Brasil.</p></div><div><h4>Seções</h4><ul><li><a href="lgpd-descomplicada.html">LGPD Descomplicada</a></li><li><a href="noticias.html">Jurisprudência</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="glossario.html">Glossário</a></li><li><a href="cursos.html">Cursos</a></li></ul></div><div><h4>Contato</h4><ul><li>✉️ adriano.israel@live.com</li><li>📸 @adrianoisrael7</li><li>📍 Mato Grosso do Sul, Brasil</li></ul></div></div><div class="footer-bottom"><p>© 2025 Blog LGPD · Adriano Israel · Todos os direitos reservados</p></div></footer>
+  <script src="script.js"></script>
+  <script>
+    function filtrarTermos() {
+      const q = document.getElementById('searchTermo').value.toLowerCase();
+      document.querySelectorAll('.termo-card').forEach(card => {
+        card.style.display = card.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+    document.getElementById('searchTermo').addEventListener('keyup', filtrarTermos);
+  </script>
+</body>
+</html>

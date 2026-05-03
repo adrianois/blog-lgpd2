@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Central de Downloads | Blog LGPD</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .dl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+    .dl-card { background:var(--white); border:1px solid var(--gray-border); border-radius:var(--radius); padding:28px 24px; display:flex; flex-direction:column; gap:12px; transition:all .25s; }
+    .dl-card:hover { box-shadow:var(--shadow-lg); border-color:var(--gold); }
+    .dl-big-icon { font-size:2.6rem; }
+    .dl-card h3 { font-family:'Playfair Display',serif; font-size:1.08rem; color:var(--navy); }
+    .dl-card p { font-size:.87rem; color:var(--text-muted); flex:1; line-height:1.6; }
+    .dl-meta { display:flex; gap:16px; font-size:.75rem; color:var(--text-muted); }
+    .dl-free { font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:#2e7d32; background:rgba(46,125,50,.1); padding:3px 10px; border-radius:2px; }
+    .dl-premium { font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--gold); background:rgba(201,168,76,.12); padding:3px 10px; border-radius:2px; }
+    .dl-form { background:var(--navy); padding:28px 32px; border-radius:var(--radius); display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; }
+    .dl-form label { display:block; color:rgba(255,255,255,.7); font-size:.82rem; margin-bottom:6px; }
+    .dl-form input { padding:11px 16px; border:none; border-radius:var(--radius); font-size:.9rem; font-family:inherit; width:280px; }
+    @media(max-width:760px){ .dl-grid{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <div class="topbar"><span>📋 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Leia mais</a></span><span class="topbar-right">📧 adriano.israel@live.com</span></div>
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div>
+      <nav class="nav" id="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="lgpd-descomplicada.html" class="nav-link">LGPD Descomplicada</a>
+        <a href="noticias.html" class="nav-link">Jurisprudência & Notícias</a>
+        <a href="downloads.html" class="nav-link active">Downloads</a>
+        <a href="glossario.html" class="nav-link">Glossário</a>
+        <a href="cursos.html" class="nav-link nav-cta">Cursos & Formação</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="hero-badge">📥 Materiais Gratuitos</div>
+      <h1>Central de <em>Downloads</em></h1>
+      <p>E-books, checklists, templates e modelos de documentos para auxiliar na adequação à LGPD.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header"><h2>Checklists & E-books</h2></div>
+      <div class="dl-grid">
+        <div class="dl-card">
+          <div class="dl-big-icon">📋</div>
+          <span class="dl-free">Gratuito</span>
+          <h3>Checklist Fase 1 — Diagnóstico LGPD</h3>
+          <p>E-book completo para iniciar o processo de adequação. Cobre o diagnóstico inicial, identificação de dados pessoais e mapeamento de riscos.</p>
+          <div class="dl-meta"><span>📄 PDF · 24 páginas</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: Checklist Fase 1" class="btn btn-primary btn-sm">📥 Baixar grátis</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-big-icon">📘</div>
+          <span class="dl-free">Gratuito</span>
+          <h3>Guia do DPO: Primeiros 90 Dias</h3>
+          <p>O que fazer nos primeiros três meses como Encarregado de Proteção de Dados. Prioridades, entregas e como ganhar credibilidade.</p>
+          <div class="dl-meta"><span>📄 PDF · 18 páginas</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: Guia DPO 90 Dias" class="btn btn-primary btn-sm">📥 Baixar grátis</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-big-icon">🏛</div>
+          <span class="dl-free">Gratuito</span>
+          <h3>LGPD no Setor Público: Perguntas e Respostas</h3>
+          <p>50 perguntas frequentes de servidores, gestores e vereadores sobre a aplicação da LGPD em órgãos públicos municipais.</p>
+          <div class="dl-meta"><span>📄 PDF · 32 páginas</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: FAQ Setor Público" class="btn btn-primary btn-sm">📥 Baixar grátis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header"><h2>Templates & Modelos de Documentos</h2></div>
+      <div class="dl-grid">
+        <div class="dl-card">
+          <div class="dl-big-icon">📄</div>
+          <span class="dl-free">Gratuito</span>
+          <h3>Termo de Responsabilidade para Colaboradores</h3>
+          <p>Modelo editável (Word) de termo de ciência e responsabilidade sobre proteção de dados pessoais para assinar com colaboradores internos.</p>
+          <div class="dl-meta"><span>📝 DOCX · Editável</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: Termo de Responsabilidade" class="btn btn-primary btn-sm">📥 Baixar grátis</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-big-icon">🗂</div>
+          <span class="dl-premium">Assinantes</span>
+          <h3>Planilha de Inventário de Dados (RoPA)</h3>
+          <p>Planilha Excel completa para mapeamento de dados pessoais, bases legais, finalidades, prazos de retenção e responsáveis pelo tratamento.</p>
+          <div class="dl-meta"><span>📊 XLSX · Completo</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: Planilha RoPA" class="btn btn-outline btn-sm" style="border-color:var(--gold);color:var(--gold)">📥 Solicitar acesso</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-big-icon">📑</div>
+          <span class="dl-premium">Assinantes</span>
+          <h3>Cláusula de Proteção de Dados para Contratos</h3>
+          <p>Modelo de addendum contratual para incluir obrigações de proteção de dados em contratos com fornecedores e operadores.</p>
+          <div class="dl-meta"><span>📝 DOCX · Editável</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: Cláusula Contratual" class="btn btn-outline btn-sm" style="border-color:var(--gold);color:var(--gold)">📥 Solicitar acesso</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-big-icon">🔔</div>
+          <span class="dl-premium">Assinantes</span>
+          <h3>Formulário de Resposta ao Titular de Dados</h3>
+          <p>Modelo padronizado para responder requisições de acesso, correção, exclusão e portabilidade dentro do prazo legal de 15 dias.</p>
+          <div class="dl-meta"><span>📝 DOCX · Editável</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: Formulário Titular" class="btn btn-outline btn-sm" style="border-color:var(--gold);color:var(--gold)">📥 Solicitar acesso</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-big-icon">🚨</div>
+          <span class="dl-premium">Assinantes</span>
+          <h3>Plano de Resposta a Incidentes</h3>
+          <p>Modelo de plano de resposta a incidentes de segurança com dados pessoais. Inclui fluxograma de acionamento e template de comunicação à ANPD.</p>
+          <div class="dl-meta"><span>📄 PDF + DOCX</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: Plano de Incidentes" class="btn btn-outline btn-sm" style="border-color:var(--gold);color:var(--gold)">📥 Solicitar acesso</a>
+        </div>
+        <div class="dl-card">
+          <div class="dl-big-icon">📊</div>
+          <span class="dl-free">Gratuito</span>
+          <h3>Política de Senhas e Mesa Limpa</h3>
+          <p>Template completo de Política de Segurança da Informação focado em senhas, mesa limpa e uso de dispositivos. Pronto para personalizar.</p>
+          <div class="dl-meta"><span>📝 DOCX · Editável</span></div>
+          <a href="mailto:adriano.israel@live.com?subject=Download: Política de Senhas" class="btn btn-primary btn-sm">📥 Baixar grátis</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Newsletter para materiais premium -->
+  <section class="section-newsletter">
+    <div class="container newsletter-inner">
+      <div><h2>Acesse todos os materiais</h2><p>Inscreva-se na newsletter e receba materiais exclusivos toda semana, incluindo os templates premium gratuitamente.</p></div>
+      <form class="newsletter-form" onsubmit="return false;"><input type="email" placeholder="seu@email.com" required /><button type="submit" class="btn btn-primary">Quero acesso completo</button></form>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container footer-grid"><div><div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div><p class="footer-desc">Conteúdo especializado em LGPD para o Brasil.</p></div><div><h4>Seções</h4><ul><li><a href="lgpd-descomplicada.html">LGPD Descomplicada</a></li><li><a href="noticias.html">Jurisprudência</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="glossario.html">Glossário</a></li><li><a href="cursos.html">Cursos</a></li></ul></div><div><h4>Contato</h4><ul><li>✉️ adriano.israel@live.com</li><li>📸 @adrianoisrael7</li><li>📍 Mato Grosso do Sul, Brasil</li></ul></div></div><div class="footer-bottom"><p>© 2025 Blog LGPD · Adriano Israel · Todos os direitos reservados</p></div></footer>
+  <script src="script.js"></script>
+</body>
+</html>
