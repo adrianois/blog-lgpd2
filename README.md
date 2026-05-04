@@ -14,7 +14,13 @@ Este projeto contém o código fonte do site estático do Blog LGPD, desenvolvid
 - **Downloads**: Recursos gratuitos para download
 - **Cursos**: Informações sobre formações disponíveis
 
-## 📁 Estrutura do Projeto
+## � Conteúdo
+
+Os artigos estão organizados na pasta `content/` por categoria:
+
+- **lgpd-descomplicada/**: Série completa de artigos explicativos sobre a LGPD, desde conceitos básicos até implementação prática.
+
+## �📁 Estrutura do Projeto
 
 ```
 blog-lgpd/
@@ -25,13 +31,23 @@ blog-lgpd/
 │   ├── glossario.html
 │   ├── lgpd-descomplicada.html
 │   └── noticias.html
+├── content/                # Conteúdo dos artigos
+│   └── lgpd-descomplicada/ # Artigos da categoria LGPD Descomplicada
+│       ├── 01-o-que-e-lgpd.md
+│       ├── 02-quais-dados-sao-protegidos.md
+│       ├── 03-bases-legais.md
+│       ├── 04-papel-do-dpo.md
+│       ├── 05-direitos-dos-titulares.md
+│       └── 06-como-se-adequar.md
 ├── assets/
 │   ├── css/
 │   │   └── style.css       # Estilos CSS
 │   └── js/
 │       └── script.js       # Scripts JavaScript
 ├── README.md               # Este arquivo
-└── .gitignore              # Arquivos ignorados pelo Git
+├── LICENSE                 # Licença do projeto
+├── .gitignore              # Arquivos ignorados pelo Git
+└── files.zip               # Arquivo de backup/original (pode ser removido)
 ```
 
 ## 🛠️ Tecnologias Utilizadas
