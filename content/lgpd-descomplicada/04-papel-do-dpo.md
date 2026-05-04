@@ -116,4 +116,4 @@ No próximo artigo, vamos detalhar os **direitos dos titulares de dados** — o 
 
 ---
 
-*Próximo artigo: [Direitos dos titulares de dados]*
+*Próximo artigo: [Direitos dos titulares de dados](artigo.html?file=../content/lgpd-descomplicada/05-direitos-dos-titulares.md)*

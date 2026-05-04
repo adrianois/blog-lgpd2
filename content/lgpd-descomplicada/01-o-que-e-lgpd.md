@@ -103,4 +103,4 @@ Nos próximos artigos desta série, vamos detalhar cada pilar da lei: quais dado
 
 ---
 
-*Próximo artigo: [Quais dados são protegidos pela LGPD?]*
+*Próximo artigo: [Quais dados são protegidos pela LGPD?](artigo.html?file=../content/lgpd-descomplicada/02-quais-dados-sao-protegidos.md)*

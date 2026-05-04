@@ -206,5 +206,6 @@ Esta foi a última publicação da série **LGPD Descomplicada**. Esperamos que 
 
 ---
 
-*Série completa: LGPD Descomplicada*  
+*Série completa: LGPD Descomplicada*
+*[O que é a LGPD?](artigo.html?file=../content/lgpd-descomplicada/01-o-que-e-lgpd.md) · [Quais dados são protegidos?](artigo.html?file=../content/lgpd-descomplicada/02-quais-dados-sao-protegidos.md) · [As 10 bases legais](artigo.html?file=../content/lgpd-descomplicada/03-bases-legais.md) · [O papel do DPO](artigo.html?file=../content/lgpd-descomplicada/04-papel-do-dpo.md) · [Direitos dos titulares](artigo.html?file=../content/lgpd-descomplicada/05-direitos-dos-titulares.md) · [Como se adequar: roteiro prático](artigo.html?file=../content/lgpd-descomplicada/06-como-se-adequar.md)  
 *[O que é a LGPD?] · [Quais dados são protegidos?] · [As 10 bases legais] · [O papel do DPO] · [Direitos dos titulares] · [Como se adequar: roteiro prático]*
