@@ -82,10 +82,16 @@
     }
 
     const params = new URLSearchParams(window.location.search);
-    const file = params.get('file');
+    let file = params.get('file');
     if (!file) {
       setError('Nenhum arquivo de artigo foi informado.');
     } else {
+      // Corrigir caminho relativo para caminho absoluto no GitHub Pages
+      if (!file.startsWith('/blog-lgpd/')) {
+        // Se for um caminho relativo como ../content/artigos/nome.md, converter para /blog-lgpd/content/artigos/nome.md
+        file = file.replace(/^\.\.\/content\//, '/blog-lgpd/content/');
+      }
+      
       fetch(file)
         .then(response => {
           if (!response.ok) throw new Error('Arquivo não encontrado');
