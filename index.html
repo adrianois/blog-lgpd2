@@ -14,7 +14,7 @@
   <!-- TOPBAR -->
   <div class="topbar">
     <span>📋 ANPD publica nova resolução sobre cookies — <a href="pages/noticias.html">Leia mais</a></span>
-    <span class="topbar-right">📧 adriano.israel@live.com</span>
+    <span class="topbar-right">📧 <span id="contactEmail"></span></span>
   </div>
 
   <!-- HEADER -->
@@ -340,7 +340,7 @@
       <div>
         <h4>Contato</h4>
         <ul>
-          <li>✉️ adriano.israel@live.com</li>
+          <li>✉️ <span id="footerEmail"></span></li>
           <li>📸 @adrianoisrael7</li>
           <li>📍 Mato Grosso do Sul, Brasil</li>
         </ul>
@@ -352,5 +352,30 @@
   </footer>
 
   <script src="assets/js/script.js"></script>
+  <script>
+    // Ofuscar email contra coleta automatizada
+    document.addEventListener('DOMContentLoaded', function() {
+      const emailParts = ['adriano.israel', '@', 'live.com'];
+      const fullEmail = emailParts.join('');
+      
+      const contactEmail = document.getElementById('contactEmail');
+      if (contactEmail) {
+        contactEmail.textContent = fullEmail;
+        contactEmail.style.cursor = 'pointer';
+        contactEmail.addEventListener('click', function() {
+          window.location.href = 'mailto:' + fullEmail;
+        });
+      }
+      
+      const footerEmail = document.getElementById('footerEmail');
+      if (footerEmail) {
+        footerEmail.textContent = fullEmail;
+        footerEmail.style.cursor = 'pointer';
+        footerEmail.addEventListener('click', function() {
+          window.location.href = 'mailto:' + fullEmail;
+        });
+      }
+    });
+  </script>
 </body>
 </html>

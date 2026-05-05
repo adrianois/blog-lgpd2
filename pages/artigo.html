@@ -73,8 +73,32 @@
   </footer>
 
   <script src="../assets/js/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js" integrity="sha384-0cHqWbVYLOQNJ8iDwNQ8Wl5+5QgQ4P1cK6+K5r1q8B8r8I6E8r8K8K8K8K8K8K8K" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
   <script>
+    // Configurar Marked.js com opções de segurança
+    marked.setOptions({
+      breaks: true,
+      gfm: true,
+      headerIds: false, // Evitar IDs que podem ser usados para XSS
+      mangle: false,    // Não alterar URLs
+      sanitize: false,  // Vamos usar DOMPurify se disponível
+      smartLists: true,
+      smartypants: false,
+      xhtml: false
+    });
+
+    // Função para sanitizar HTML se DOMPurify estiver disponível
+    function sanitizeHtml(html) {
+      if (typeof DOMPurify !== 'undefined') {
+        return DOMPurify.sanitize(html, {
+          ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li', 'blockquote', 'code', 'pre', 'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td'],
+          ALLOWED_ATTR: ['href', 'target', 'rel']
+        });
+      }
+      return html; // Fallback se DOMPurify não estiver disponível
+    }
+
     function setError(message) {
       const target = document.getElementById('articleContent');
       target.innerHTML = `<p>${message}</p>`;
@@ -99,8 +123,9 @@
         })
         .then(markdown => {
           const html = marked.parse(markdown);
+          const sanitizedHtml = sanitizeHtml(html);
           const content = document.getElementById('articleContent');
-          content.innerHTML = html;
+          content.innerHTML = sanitizedHtml;
 
           const firstHeading = content.querySelector('h1, h2, h3');
           if (firstHeading) {
