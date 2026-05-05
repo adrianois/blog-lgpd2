@@ -122,4 +122,4 @@ No próximo artigo, vamos entender as **10 bases legais** que autorizam o tratam
 
 ---
 
-*Próximo artigo: [As 10 bases legais do tratamento de dados](artigo.html?file=../content/lgpd-descomplicada/03-bases-legais.md)*
+*Próximo artigo: [As 10 bases legais do tratamento de dados](artigo.html?file=/blog-lgpd/content/lgpd-descomplicada/03-bases-legais.md)*

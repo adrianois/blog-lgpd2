@@ -136,4 +136,4 @@ No próximo e último artigo desta série, vamos ao caminho prático: um roteiro
 
 ---
 
-*Próximo artigo: [Como se adequar à LGPD: roteiro prático](artigo.html?file=../content/lgpd-descomplicada/06-como-se-adequar.md)*
+*Próximo artigo: [Como se adequar à LGPD: roteiro prático](artigo.html?file=/blog-lgpd/content/lgpd-descomplicada/06-como-se-adequar.md)*

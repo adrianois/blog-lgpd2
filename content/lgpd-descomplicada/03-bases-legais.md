@@ -163,4 +163,4 @@ No próximo artigo, vamos falar sobre uma figura central na estrutura da LGPD: o
 
 ---
 
-*Próximo artigo: [O papel do DPO (Encarregado de Dados)](artigo.html?file=../content/lgpd-descomplicada/04-papel-do-dpo.md)*
+*Próximo artigo: [O papel do DPO (Encarregado de Dados)](artigo.html?file=/blog-lgpd/content/lgpd-descomplicada/04-papel-do-dpo.md)*
