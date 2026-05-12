@@ -3,558 +3,408 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Categorias | Blog LGPD</title>
-  <meta name="description" content="Explore todos os artigos do Blog LGPD organizados por categoria: Setor Público, Governança, Segurança da Informação, Direitos do Titular e mais.">
+  <title>Categorias | Guardião — Sistema de LGPD</title>
+  <meta name="description" content="Explore todos os artigos do Guardião LGPD organizados por categoria: Setor Público, Governança, Segurança da Informação, Direitos do Titular e mais.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
-    /* ── Reset & Base ─────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    /* ── Estilos exclusivos da página Categorias ──────────────────────
+       Apenas o que NÃO existe no style.css compartilhado.
+       Usa as CSS vars do tema para manter consistência total.
+    ─────────────────────────────────────────────────────────────────── */
 
-    :root {
-      --dark:    #1a1a2e;
-      --accent:  #c8a96e;
-      --accent2: #e8c98e;
-      --light:   #f8f6f2;
-      --gray:    #f0ede8;
-      --text:    #2d2d2d;
-      --muted:   #6b6b6b;
-      --border:  #e0dbd2;
-      --white:   #ffffff;
-
-      /* categoria cores */
-      --setor:     #1a5276;
-      --setor-bg:  #d6eaf8;
-      --gov:       #1e8449;
-      --gov-bg:    #d5f5e3;
-      --seg:       #6e2f7a;
-      --seg-bg:    #f3e5f5;
-      --dir:       #c0392b;
-      --dir-bg:    #fdecea;
-      --anpd:      #d35400;
-      --anpd-bg:   #fef0e4;
-      --glos:      #2e4057;
-      --glos-bg:   #e8edf2;
-
-      --radius: 10px;
-      --shadow: 0 4px 20px rgba(0,0,0,.07);
-      --shadow-hover: 0 8px 32px rgba(0,0,0,.13);
-      --transition: .22s ease;
-    }
-
-    body {
-      font-family: 'Source Sans 3', sans-serif;
-      background: var(--light);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    /* ── Topbar ───────────────────────────────────── */
-    .topbar {
-      background: var(--dark);
-      color: #ccc;
-      font-size: .8rem;
-      padding: .45rem 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .topbar a { color: var(--accent); text-decoration: none; }
-
-    /* ── Header ───────────────────────────────────── */
-    .header {
+    /* Barra de filtro por categoria (pills) */
+    .cat-filter-bar {
       background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 12px rgba(0,0,0,.06);
-    }
-    .header-inner {
-      max-width: 1200px;
-      margin: auto;
-      padding: .9rem 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-    .logo { display: flex; align-items: center; gap: .75rem; text-decoration: none; }
-    .logo-icon { font-size: 1.6rem; }
-    .logo-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem;
-      color: var(--dark);
-      display: block;
-      line-height: 1.1;
-    }
-    .logo-sub { font-size: .7rem; color: var(--muted); display: block; }
-
-    .nav { display: flex; align-items: center; gap: .25rem; flex-wrap: wrap; }
-    .nav-link {
-      font-size: .85rem;
-      font-weight: 500;
-      color: var(--text);
-      text-decoration: none;
-      padding: .45rem .8rem;
-      border-radius: 6px;
-      transition: var(--transition);
-    }
-    .nav-link:hover, .nav-link.active { background: var(--gray); color: var(--dark); }
-    .nav-cta {
-      background: var(--dark);
-      color: var(--white) !important;
-      padding: .45rem 1rem;
-    }
-    .nav-cta:hover { background: var(--accent) !important; }
-
-    /* ── Page Hero ────────────────────────────────── */
-    .page-hero {
-      background: var(--dark);
-      color: var(--white);
-      padding: 3rem 1.5rem 2.5rem;
-      text-align: center;
-    }
-    .page-hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      font-weight: 700;
-      line-height: 1.2;
-    }
-    .page-hero h1 em { color: var(--accent); font-style: normal; }
-    .page-hero p {
-      color: #aaa;
-      margin-top: .75rem;
-      font-size: 1rem;
-      max-width: 540px;
-      margin-inline: auto;
-    }
-    /* ── Container ────────────────────────────────── */
-    .container { max-width: 1200px; margin: auto; padding: 0 1.5rem; }
-
-    /* ── Category Nav Pills (topo) ────────────────── */
-    .cat-nav {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--gray-border);
       position: sticky;
       top: 57px;
       z-index: 90;
     }
-    .cat-nav-inner {
-      max-width: 1200px;
+    .cat-filter-inner {
+      max-width: 1160px;
       margin: auto;
-      padding: 0 1.5rem;
+      padding: 0 24px;
       display: flex;
-      gap: .5rem;
+      gap: 4px;
       overflow-x: auto;
       scrollbar-width: none;
       -webkit-overflow-scrolling: touch;
     }
-    .cat-nav-inner::-webkit-scrollbar { display: none; }
-    .cat-pill {
+    .cat-filter-inner::-webkit-scrollbar { display: none; }
+
+    .filter-pill {
       display: flex;
       align-items: center;
-      gap: .4rem;
-      padding: .7rem 1.1rem;
+      gap: 6px;
+      padding: 10px 14px;
       border: none;
       background: transparent;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: .82rem;
-      font-weight: 600;
-      color: var(--muted);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--steel);
       cursor: pointer;
       white-space: nowrap;
       border-bottom: 3px solid transparent;
       transition: var(--transition);
     }
-    .cat-pill:hover { color: var(--dark); }
-    .cat-pill.active { color: var(--dark); border-bottom-color: var(--accent); }
-    .cat-pill .pill-count {
-      background: var(--gray);
-      color: var(--muted);
+    .filter-pill:hover { color: var(--navy); }
+    .filter-pill.active { color: var(--navy-deep); border-bottom-color: var(--cyan); }
+    .filter-pill .pill-count {
+      background: var(--gray-bg);
+      color: var(--text-muted);
       border-radius: 20px;
-      padding: .1rem .45rem;
-      font-size: .72rem;
-      font-weight: 700;
+      padding: 1px 7px;
+      font-size: 0.68rem;
+      font-weight: 800;
     }
-    .cat-pill.active .pill-count { background: var(--accent); color: var(--dark); }
+    .filter-pill.active .pill-count { background: var(--cyan); color: var(--navy-deep); }
 
-    /* ── Layout Principal ─────────────────────────── */
+    /* Layout: sidebar + conteúdo */
     .page-layout {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 2rem;
-      padding: 2.5rem 0 4rem;
+      grid-template-columns: 260px 1fr;
+      gap: 32px;
+      padding: 40px 0 64px;
+      align-items: start;
     }
     @media (max-width: 900px) {
       .page-layout { grid-template-columns: 1fr; }
-      .sidebar { display: none; }
+      .page-sidebar { display: none; }
     }
 
-    /* ── Sidebar ──────────────────────────────────── */
-    .sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    /* Sidebar */
+    .page-sidebar { display: flex; flex-direction: column; gap: 20px; }
 
-    .sidebar-card {
+    .sidebar-widget {
       background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
     }
-    .sidebar-card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: .95rem;
-      font-weight: 700;
-      color: var(--dark);
-      padding: 1rem 1.2rem .75rem;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      gap: .5rem;
+    .sidebar-widget-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cyan-dark);
+      padding: 14px 18px 12px;
+      border-bottom: 1px solid var(--gray-border);
     }
 
-    /* Sidebar: lista de categorias */
+    /* Lista de categorias na sidebar */
     .sidebar-cat-list { list-style: none; }
-    .sidebar-cat-item {
-      border-bottom: 1px solid var(--border);
-    }
+    .sidebar-cat-item { border-bottom: 1px solid var(--gray-border); }
     .sidebar-cat-item:last-child { border-bottom: none; }
     .sidebar-cat-btn {
       display: flex;
       align-items: center;
-      gap: .75rem;
+      gap: 10px;
       width: 100%;
-      padding: .85rem 1.2rem;
+      padding: 11px 18px;
       background: transparent;
       border: none;
       cursor: pointer;
       text-align: left;
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: .88rem;
-      font-weight: 500;
-      color: var(--text);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--steel);
       transition: var(--transition);
     }
-    .sidebar-cat-btn:hover { background: var(--gray); }
-    .sidebar-cat-btn.active {
-      background: var(--dark);
-      color: var(--white);
-    }
-    .sidebar-cat-btn.active .scat-count { background: rgba(255,255,255,.2); color: var(--white); }
-    .scat-icon { font-size: 1.1rem; width: 28px; text-align: center; flex-shrink: 0; }
+    .sidebar-cat-btn:hover { background: var(--gray-bg); color: var(--navy); }
+    .sidebar-cat-btn.active { background: var(--navy-deep); color: var(--white); }
+    .sidebar-cat-btn.active .scat-count { background: rgba(0,201,177,0.25); color: var(--cyan); }
+    .scat-icon { font-size: 1rem; width: 24px; text-align: center; flex-shrink: 0; }
     .scat-label { flex: 1; }
     .scat-count {
-      background: var(--gray);
-      color: var(--muted);
+      background: var(--gray-bg);
+      color: var(--text-muted);
       border-radius: 20px;
-      padding: .1rem .5rem;
-      font-size: .72rem;
-      font-weight: 700;
+      padding: 1px 7px;
+      font-size: 0.68rem;
+      font-weight: 800;
       flex-shrink: 0;
     }
 
-    /* Sidebar: tags */
-    .tag-cloud { display: flex; flex-wrap: wrap; gap: .4rem; padding: 1rem 1.2rem; }
-    .tag {
-      background: var(--gray);
-      color: var(--muted);
-      font-size: .75rem;
-      font-weight: 600;
-      padding: .25rem .65rem;
+    /* Tag cloud */
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 18px; }
+    .tag-chip {
+      background: var(--gray-bg);
+      color: var(--text-muted);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
       border-radius: 20px;
       cursor: pointer;
       transition: var(--transition);
       border: none;
-      font-family: 'Source Sans 3', sans-serif;
+      letter-spacing: 0.03em;
     }
-    .tag:hover { background: var(--dark); color: var(--white); }
+    .tag-chip:hover { background: var(--navy); color: var(--white); }
 
-    /* Sidebar: artigos recentes */
+    /* Artigos recentes na sidebar */
     .recent-list { list-style: none; }
     .recent-item {
-      padding: .85rem 1.2rem;
-      border-bottom: 1px solid var(--border);
+      padding: 12px 18px;
+      border-bottom: 1px solid var(--gray-border);
       display: flex;
       flex-direction: column;
-      gap: .2rem;
+      gap: 3px;
     }
     .recent-item:last-child { border-bottom: none; }
-    .recent-cat-tag {
-      font-size: .7rem;
-      font-weight: 700;
+    .recent-cat-label {
+      font-size: 0.66rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: .05em;
+      letter-spacing: 0.08em;
     }
-    .recent-title {
-      font-size: .85rem;
+    .recent-cat-label.setor  { color: var(--setor); }
+    .recent-cat-label.gov    { color: var(--governanca); }
+    .recent-cat-label.seg    { color: var(--seguranca); }
+    .recent-cat-label.dir    { color: var(--direitos); }
+    .recent-cat-label.anpd   { color: var(--navy-mid); }
+    .recent-link {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.84rem;
       font-weight: 600;
-      color: var(--dark);
-      line-height: 1.3;
+      color: var(--navy-deep);
+      line-height: 1.35;
       text-decoration: none;
       transition: var(--transition);
     }
-    .recent-title:hover { color: var(--accent); }
-    .recent-date { font-size: .72rem; color: var(--muted); }
+    .recent-link:hover { color: var(--cyan-dark); }
+    .recent-date { font-size: 0.7rem; color: var(--text-muted); }
 
-    /* ── Main Content ─────────────────────────────── */
+    /* Área principal */
     .main-content { min-width: 0; }
 
-    .section-label {
+    .content-header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.5rem;
+      margin-bottom: 20px;
     }
-    .section-label h2 {
-      font-family: 'Playfair Display', serif;
+    .content-header h2 {
+      font-family: 'Source Serif 4', serif;
       font-size: 1.5rem;
-      color: var(--dark);
-    }
-    .section-label .count-badge {
-      background: var(--gray);
-      color: var(--muted);
-      font-size: .8rem;
       font-weight: 700;
-      padding: .3rem .8rem;
+      color: var(--navy-deep);
+    }
+    .count-badge {
+      background: var(--gray-bg);
+      color: var(--text-muted);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      padding: 4px 12px;
       border-radius: 20px;
+      letter-spacing: 0.04em;
     }
 
-    /* Search bar */
+    /* Barra de busca */
     .search-bar {
       position: relative;
-      margin-bottom: 1.5rem;
+      margin-bottom: 24px;
     }
     .search-bar input {
       width: 100%;
-      padding: .75rem 1rem .75rem 2.8rem;
-      border: 1.5px solid var(--border);
+      padding: 11px 16px 11px 42px;
+      border: 1.5px solid var(--gray-border);
       border-radius: var(--radius);
-      font-family: 'Source Sans 3', sans-serif;
-      font-size: .9rem;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.88rem;
       background: var(--white);
       color: var(--text);
       transition: var(--transition);
       outline: none;
     }
-    .search-bar input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(200,169,110,.15); }
-    .search-bar .search-icon {
+    .search-bar input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px var(--cyan-glow);
+    }
+    .search-bar input::placeholder { color: var(--text-muted); }
+    .search-icon {
       position: absolute;
-      left: .9rem;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--muted);
+      color: var(--text-muted);
       font-size: 1rem;
+      pointer-events: none;
     }
-    .search-bar input::placeholder { color: var(--muted); }
 
-    /* ── Category Section ─────────────────────────── */
+    /* Seções de categoria */
     .cat-section { display: none; }
     .cat-section.visible { display: block; }
-    .cat-section + .cat-section { margin-top: 3rem; }
+    .cat-section + .cat-section.visible { margin-top: 48px; }
 
     .cat-section-header {
       display: flex;
       align-items: center;
-      gap: .75rem;
-      margin-bottom: 1.25rem;
-      padding-bottom: .75rem;
-      border-bottom: 2px solid var(--border);
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--gray-border);
     }
     .cat-section-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 10px;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       flex-shrink: 0;
     }
-    .cat-section-header h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
-      color: var(--dark);
-    }
-    .cat-section-header p {
-      font-size: .82rem;
-      color: var(--muted);
-      margin-top: .1rem;
-    }
-    .cat-section-header .cat-count-badge {
-      margin-left: auto;
-      font-size: .8rem;
-      font-weight: 700;
-      padding: .25rem .75rem;
-      border-radius: 20px;
-    }
+    .cat-section-icon.setor  { background: rgba(26,95,168,0.1); }
+    .cat-section-icon.gov    { background: rgba(13,122,95,0.1); }
+    .cat-section-icon.seg    { background: rgba(192,57,43,0.1); }
+    .cat-section-icon.dir    { background: rgba(106,27,154,0.1); }
+    .cat-section-icon.anpd   { background: rgba(44,95,168,0.1); }
+    .cat-section-icon.glos   { background: var(--gray-bg); }
 
-    /* ── Article Cards ────────────────────────────── */
+    .cat-section-header h3 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+    }
+    .cat-section-header p { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .cat-section-badge {
+      margin-left: auto;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+    .cat-section-badge.setor  { background: rgba(26,95,168,0.1);  color: var(--setor); }
+    .cat-section-badge.gov    { background: rgba(13,122,95,0.1);  color: var(--governanca); }
+    .cat-section-badge.seg    { background: rgba(192,57,43,0.1);  color: var(--seguranca); }
+    .cat-section-badge.dir    { background: rgba(106,27,154,0.1); color: var(--direitos); }
+    .cat-section-badge.anpd   { background: rgba(44,95,168,0.1);  color: var(--navy-mid); }
+    .cat-section-badge.glos   { background: var(--gray-bg);       color: var(--steel); }
+
+    /* Cards de artigo na grade */
     .articles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.25rem;
+      gap: 16px;
     }
 
     .article-card {
       background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
       display: flex;
       flex-direction: column;
       transition: var(--transition);
-      cursor: pointer;
       text-decoration: none;
       color: inherit;
+      position: relative;
+    }
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--navy-mid));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
     }
     .article-card:hover {
       transform: translateY(-3px);
-      box-shadow: var(--shadow-hover);
-      border-color: transparent;
+      box-shadow: var(--shadow-lg);
     }
+    .article-card:hover::before { transform: scaleX(1); }
 
-    .card-top {
-      padding: 1.25rem 1.25rem .75rem;
+    .card-body {
+      padding: 20px 20px 14px;
       flex: 1;
     }
-    .card-cat-tag {
-      display: inline-block;
-      font-size: .7rem;
-      font-weight: 700;
+    .card-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.66rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: .06em;
-      padding: .2rem .6rem;
-      border-radius: 4px;
-      margin-bottom: .75rem;
+      letter-spacing: 0.08em;
+      padding: 3px 9px;
+      border-radius: 3px;
+      margin-bottom: 10px;
     }
-    .card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--dark);
-      line-height: 1.35;
-      margin-bottom: .5rem;
-    }
-    .card-excerpt {
-      font-size: .83rem;
-      color: var(--muted);
-      line-height: 1.55;
-    }
+    .card-tag.setor  { background: rgba(26,95,168,0.1);  color: var(--setor); }
+    .card-tag.gov    { background: rgba(13,122,95,0.1);  color: var(--governanca); }
+    .card-tag.seg    { background: rgba(192,57,43,0.1);  color: var(--seguranca); }
+    .card-tag.dir    { background: rgba(106,27,154,0.1); color: var(--direitos); }
+    .card-tag.anpd   { background: rgba(44,95,168,0.1);  color: var(--navy-mid); }
+    .card-tag.glos   { background: var(--gray-bg);       color: var(--steel); }
+    .card-tag.urgent { background: rgba(192,57,43,0.12); color: var(--seguranca); }
 
-    .card-bottom {
-      padding: .75rem 1.25rem;
-      border-top: 1px solid var(--border);
+    .card-title {
+      font-family: 'Source Serif 4', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .card-excerpt { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+    .card-footer {
+      padding: 10px 20px 14px;
+      border-top: 1px solid var(--gray-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: .5rem;
+      gap: 8px;
     }
-    .card-author { font-size: .75rem; color: var(--muted); font-weight: 500; }
-    .card-date { font-size: .72rem; color: var(--muted); }
-    .card-link {
-      font-size: .78rem;
-      font-weight: 700;
-      color: var(--dark);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .card-link::after { content: ' →'; }
+    .card-author { font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; color: var(--text-muted); }
+    .card-date   { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; color: var(--text-muted); }
+    .card-cta    { font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 800; color: var(--navy-mid); white-space: nowrap; }
+    .card-cta::after { content: ' →'; }
 
-    /* ── Cores por categoria ──────────────────────── */
-    .tag-setor    { color: var(--setor);  background: var(--setor-bg); }
-    .tag-gov      { color: var(--gov);    background: var(--gov-bg); }
-    .tag-seg      { color: var(--seg);    background: var(--seg-bg); }
-    .tag-dir      { color: var(--dir);    background: var(--dir-bg); }
-    .tag-anpd     { color: var(--anpd);   background: var(--anpd-bg); }
-    .tag-glos     { color: var(--glos);   background: var(--glos-bg); }
-
-    .icon-setor   { background: var(--setor-bg); }
-    .icon-gov     { background: var(--gov-bg); }
-    .icon-seg     { background: var(--seg-bg); }
-    .icon-dir     { background: var(--dir-bg); }
-    .icon-anpd    { background: var(--anpd-bg); }
-    .icon-glos    { background: var(--glos-bg); }
-
-    .badge-setor  { background: var(--setor-bg); color: var(--setor); }
-    .badge-gov    { background: var(--gov-bg);   color: var(--gov); }
-    .badge-seg    { background: var(--seg-bg);   color: var(--seg); }
-    .badge-dir    { background: var(--dir-bg);   color: var(--dir); }
-    .badge-anpd   { background: var(--anpd-bg);  color: var(--anpd); }
-    .badge-glos   { background: var(--glos-bg);  color: var(--glos); }
-
-    .recent-setor { color: var(--setor); }
-    .recent-gov   { color: var(--gov); }
-    .recent-seg   { color: var(--seg); }
-    .recent-dir   { color: var(--dir); }
-    .recent-anpd  { color: var(--anpd); }
-
-    /* ── Empty / no results ───────────────────────── */
+    /* Estado vazio */
     .empty-state {
       text-align: center;
-      padding: 4rem 2rem;
-      color: var(--muted);
+      padding: 56px 24px;
+      color: var(--text-muted);
     }
-    .empty-state .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .empty-state p { font-size: .95rem; }
-
-    /* ── Footer ───────────────────────────────────── */
-    .footer {
-      background: var(--dark);
-      color: #aaa;
-      padding: 3rem 1.5rem 1.5rem;
-    }
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-    .footer h4 {
-      font-family: 'Playfair Display', serif;
-      color: var(--white);
-      font-size: .95rem;
-      margin-bottom: .75rem;
-    }
-    .footer ul { list-style: none; }
-    .footer ul li { margin-bottom: .4rem; }
-    .footer ul a { color: #aaa; text-decoration: none; font-size: .85rem; transition: var(--transition); }
-    .footer ul a:hover { color: var(--accent); }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.1);
-      padding-top: 1.25rem;
-      text-align: center;
-      font-size: .78rem;
-      color: #666;
-    }
-    .footer-desc { font-size: .83rem; line-height: 1.6; margin-top: .5rem; }
-
-    /* ── Highlight no resultado de busca ──────────── */
-    mark { background: rgba(200,169,110,.3); color: inherit; border-radius: 2px; }
-
-    /* ── Scroll suave ─────────────────────────────── */
-    html { scroll-behavior: smooth; }
+    .empty-state .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+    .empty-state p { font-size: 0.92rem; line-height: 1.7; }
   </style>
 </head>
 <body>
 
 <!-- TOPBAR -->
 <div class="topbar">
-  <span>📋 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Leia mais</a></span>
-  <span>📧 adriano.israel@live.com</span>
+  <span>🛡 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Leia mais</a></span>
+  <span class="topbar-right">📧 adriano.israel@live.com</span>
 </div>
 
 <!-- HEADER -->
-<header class="header">
-  <div class="header-inner">
+<header class="header" id="header">
+  <div class="container header-inner">
     <a href="../index.html" class="logo">
-      <span class="logo-icon">⚖</span>
-      <div>
-        <span class="logo-title">Blog <strong>LGPD</strong></span>
-        <span class="logo-sub">Proteção de Dados & Privacidade</span>
+      <div class="logo-shield">
+        <span class="logo-shield-icon">🛡</span>
+      </div>
+      <div class="logo-text-wrap">
+        <span class="logo-title">Guardião<span></span></span>
+        <span class="logo-sub">Sistema de LGPD</span>
       </div>
     </a>
-    <nav class="nav">
-      <a href="../index.html" class="nav-link">Home</a>
+    <nav class="nav" id="nav">
+      <a href="../index.html" class="nav-link">Início</a>
       <a href="lgpd-descomplicada.html" class="nav-link">LGPD Descomplicada</a>
       <a href="noticias.html" class="nav-link">Jurisprudência & Notícias</a>
       <a href="downloads.html" class="nav-link">Downloads</a>
@@ -562,53 +412,56 @@
       <a href="categorias.html" class="nav-link active">Categorias</a>
       <a href="cursos.html" class="nav-link nav-cta">Cursos & Formação</a>
     </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <!-- PAGE HERO -->
 <div class="page-hero">
-  <div class="hero-badge">Categorias</div>
-  <h1>Explore por <em>Categoria</em></h1>
-  <p>Todos os artigos organizados por tema — encontre exatamente o que você precisa sobre LGPD.</p>
+  <div class="container">
+    <div class="hero-badge">🗂 Biblioteca de Conteúdo</div>
+    <h1>Explore por <em>Categoria</em></h1>
+    <p>Todos os artigos organizados por tema — encontre exatamente o que você precisa sobre LGPD.</p>
+  </div>
 </div>
 
-<!-- CATEGORY NAV PILLS -->
-<nav class="cat-nav" aria-label="Filtro por categoria">
-  <div class="cat-nav-inner" id="catPills">
-    <button class="cat-pill active" data-cat="all" onclick="filterCategory('all', this)">
+<!-- BARRA DE FILTRO (pills) -->
+<nav class="cat-filter-bar" aria-label="Filtrar por categoria">
+  <div class="cat-filter-inner" id="catPills">
+    <button class="filter-pill active" data-cat="all" onclick="filterCategory('all', this)">
       🗂 Todos <span class="pill-count" id="pill-count-all">100</span>
     </button>
-    <button class="cat-pill" data-cat="setor" onclick="filterCategory('setor', this)">
+    <button class="filter-pill" data-cat="setor" onclick="filterCategory('setor', this)">
       🏛 Setor Público <span class="pill-count">18</span>
     </button>
-    <button class="cat-pill" data-cat="gov" onclick="filterCategory('gov', this)">
+    <button class="filter-pill" data-cat="gov" onclick="filterCategory('gov', this)">
       📊 Gestão & Governança <span class="pill-count">24</span>
     </button>
-    <button class="cat-pill" data-cat="seg" onclick="filterCategory('seg', this)">
+    <button class="filter-pill" data-cat="seg" onclick="filterCategory('seg', this)">
       🔐 Segurança da Informação <span class="pill-count">16</span>
     </button>
-    <button class="cat-pill" data-cat="dir" onclick="filterCategory('dir', this)">
+    <button class="filter-pill" data-cat="dir" onclick="filterCategory('dir', this)">
       👤 Direitos do Titular <span class="pill-count">12</span>
     </button>
-    <button class="cat-pill" data-cat="anpd" onclick="filterCategory('anpd', this)">
+    <button class="filter-pill" data-cat="anpd" onclick="filterCategory('anpd', this)">
       ⚖ Jurisprudência & ANPD <span class="pill-count">30</span>
     </button>
-    <button class="cat-pill" data-cat="glos" onclick="filterCategory('glos', this)">
+    <button class="filter-pill" data-cat="glos" onclick="filterCategory('glos', this)">
       📖 Glossário <span class="pill-count">60+</span>
     </button>
   </div>
 </nav>
 
-<!-- MAIN PAGE LAYOUT -->
+<!-- LAYOUT PRINCIPAL -->
 <div class="container">
   <div class="page-layout">
 
     <!-- ── SIDEBAR ── -->
-    <aside class="sidebar">
+    <aside class="page-sidebar">
 
       <!-- Categorias -->
-      <div class="sidebar-card">
-        <div class="sidebar-card-title">🗂 Categorias</div>
+      <div class="sidebar-widget">
+        <div class="sidebar-widget-title">🗂 Categorias</div>
         <ul class="sidebar-cat-list">
           <li class="sidebar-cat-item">
             <button class="sidebar-cat-btn active" onclick="filterCategory('all', this, true)">
@@ -663,61 +516,61 @@
       </div>
 
       <!-- Tags populares -->
-      <div class="sidebar-card">
-        <div class="sidebar-card-title">🏷 Tags Populares</div>
+      <div class="sidebar-widget">
+        <div class="sidebar-widget-title">🏷 Tags Populares</div>
         <div class="tag-cloud">
-          <button class="tag" onclick="searchByTag('DPO')">DPO</button>
-          <button class="tag" onclick="searchByTag('bases legais')">Bases Legais</button>
-          <button class="tag" onclick="searchByTag('RIPD')">RIPD</button>
-          <button class="tag" onclick="searchByTag('consentimento')">Consentimento</button>
-          <button class="tag" onclick="searchByTag('ANPD')">ANPD</button>
-          <button class="tag" onclick="searchByTag('sanção')">Sanção</button>
-          <button class="tag" onclick="searchByTag('setor público')">Setor Público</button>
-          <button class="tag" onclick="searchByTag('mapeamento')">Mapeamento</button>
-          <button class="tag" onclick="searchByTag('ransomware')">Ransomware</button>
-          <button class="tag" onclick="searchByTag('titular')">Titular</button>
-          <button class="tag" onclick="searchByTag('vazamento')">Vazamento</button>
-          <button class="tag" onclick="searchByTag('inventário')">Inventário</button>
-          <button class="tag" onclick="searchByTag('LAI')">LAI</button>
-          <button class="tag" onclick="searchByTag('fornecedor')">Fornecedor</button>
+          <button class="tag-chip" onclick="searchByTag('DPO')">DPO</button>
+          <button class="tag-chip" onclick="searchByTag('bases legais')">Bases Legais</button>
+          <button class="tag-chip" onclick="searchByTag('RIPD')">RIPD</button>
+          <button class="tag-chip" onclick="searchByTag('consentimento')">Consentimento</button>
+          <button class="tag-chip" onclick="searchByTag('ANPD')">ANPD</button>
+          <button class="tag-chip" onclick="searchByTag('sanção')">Sanção</button>
+          <button class="tag-chip" onclick="searchByTag('setor público')">Setor Público</button>
+          <button class="tag-chip" onclick="searchByTag('mapeamento')">Mapeamento</button>
+          <button class="tag-chip" onclick="searchByTag('ransomware')">Ransomware</button>
+          <button class="tag-chip" onclick="searchByTag('titular')">Titular</button>
+          <button class="tag-chip" onclick="searchByTag('vazamento')">Vazamento</button>
+          <button class="tag-chip" onclick="searchByTag('inventário')">Inventário</button>
+          <button class="tag-chip" onclick="searchByTag('LAI')">LAI</button>
+          <button class="tag-chip" onclick="searchByTag('fornecedor')">Fornecedor</button>
         </div>
       </div>
 
       <!-- Artigos recentes -->
-      <div class="sidebar-card">
-        <div class="sidebar-card-title">🕐 Recentes</div>
+      <div class="sidebar-widget">
+        <div class="sidebar-widget-title">🕐 Recentes</div>
         <ul class="recent-list">
           <li class="recent-item">
-            <span class="recent-cat-tag recent-anpd">⚖ Jurisprudência</span>
-            <a class="recent-title" href="artigo.html?file=/blog-lgpd/content/noticias/sancao-milionaria-orgao-publico.md">
+            <span class="recent-cat-label anpd">⚖ Jurisprudência</span>
+            <a class="recent-link" href="artigo.html?file=/blog-lgpd/content/noticias/sancao-milionaria-orgao-publico.md">
               ANPD aplica primeira sanção milionária a órgão público
             </a>
             <span class="recent-date">03/05/2025</span>
           </li>
           <li class="recent-item">
-            <span class="recent-cat-tag recent-setor">🏛 Setor Público</span>
-            <a class="recent-title" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/lai-vs-lgpd.md">
+            <span class="recent-cat-label setor">🏛 Setor Público</span>
+            <a class="recent-link" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/lai-vs-lgpd.md">
               LAI vs LGPD: transparência e privacidade
             </a>
             <span class="recent-date">28/04/2025</span>
           </li>
           <li class="recent-item">
-            <span class="recent-cat-tag recent-seg">🔐 Segurança</span>
-            <a class="recent-title" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca/ransomware-60-minutos.md">
+            <span class="recent-cat-label seg">🔐 Segurança</span>
+            <a class="recent-link" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca/ransomware-60-minutos.md">
               Ransomware em órgãos públicos: primeiros 60 minutos
             </a>
             <span class="recent-date">25/04/2025</span>
           </li>
           <li class="recent-item">
-            <span class="recent-cat-tag recent-dir">👤 Direitos</span>
-            <a class="recent-title" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/requisicao-15-dias.md">
+            <span class="recent-cat-label dir">👤 Direitos</span>
+            <a class="recent-link" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/requisicao-15-dias.md">
               Como responder a requisição do titular em 15 dias
             </a>
             <span class="recent-date">20/04/2025</span>
           </li>
           <li class="recent-item">
-            <span class="recent-cat-tag recent-gov">📊 Governança</span>
-            <a class="recent-title" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/inventario-de-dados.md">
+            <span class="recent-cat-label gov">📊 Governança</span>
+            <a class="recent-link" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/inventario-de-dados.md">
               Guia para criar um Inventário de Dados sem erros
             </a>
             <span class="recent-date">15/04/2025</span>
@@ -727,10 +580,10 @@
 
     </aside>
 
-    <!-- ── MAIN ── -->
+    <!-- ── CONTEÚDO PRINCIPAL ── -->
     <main class="main-content">
 
-      <!-- Barra de busca -->
+      <!-- Busca -->
       <div class="search-bar">
         <span class="search-icon">🔍</span>
         <input
@@ -742,439 +595,467 @@
         />
       </div>
 
-      <!-- Label da seção -->
-      <div class="section-label" id="sectionLabel">
+      <!-- Cabeçalho da seção -->
+      <div class="content-header" id="sectionLabel">
         <h2>Todos os Artigos</h2>
         <span class="count-badge" id="countBadge">100 artigos</span>
       </div>
 
-      <!-- ───────── SETOR PÚBLICO ───────── -->
+      <!-- ── SETOR PÚBLICO ── -->
       <section class="cat-section visible" id="cat-setor" data-cat="setor">
         <div class="cat-section-header">
-          <div class="cat-section-icon icon-setor">🏛</div>
+          <div class="cat-section-icon setor">🏛</div>
           <div>
             <h3>Setor Público</h3>
             <p>Câmaras, prefeituras e órgãos com baixo orçamento</p>
           </div>
-          <span class="cat-count-badge badge-setor">18 artigos</span>
+          <span class="cat-section-badge setor">18 artigos</span>
         </div>
         <div class="articles-grid">
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/camara-municipal-baixo-orcamento.md" data-title="Como adequar uma Câmara Municipal com baixo orçamento" data-tags="câmara prefeitura setor público orçamento adequação">
-            <div class="card-top">
-              <span class="card-cat-tag tag-setor">Setor Público</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/camara-municipal-baixo-orcamento.md"
+             data-title="Como adequar uma Câmara Municipal com baixo orçamento" data-tags="câmara prefeitura setor público orçamento adequação">
+            <div class="card-body">
+              <span class="card-tag setor">🏛 Setor Público</span>
               <h4 class="card-title">Como adequar uma Câmara Municipal com baixo orçamento</h4>
               <p class="card-excerpt">Um roteiro prático em 5 etapas para gestores que precisam de resultado sem grandes investimentos iniciais.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/lai-vs-lgpd.md" data-title="LAI vs LGPD: onde termina a transparência e começa a privacidade?" data-tags="LAI transparência privacidade setor público">
-            <div class="card-top">
-              <span class="card-cat-tag tag-setor">Setor Público</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/lai-vs-lgpd.md"
+             data-title="LAI vs LGPD: onde termina a transparência e começa a privacidade?" data-tags="LAI transparência privacidade setor público">
+            <div class="card-body">
+              <span class="card-tag setor">🏛 Setor Público</span>
               <h4 class="card-title">LAI vs LGPD: onde termina a transparência e começa a privacidade?</h4>
               <p class="card-excerpt">Como conciliar o dever de transparência pública com a proteção dos dados pessoais dos servidores e cidadãos.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/dpo-municipio.md" data-title="DPO no Município: como nomear e quais as responsabilidades?" data-tags="DPO município nomeação responsabilidade">
-            <div class="card-top">
-              <span class="card-cat-tag tag-setor">Setor Público</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/dpo-municipio.md"
+             data-title="DPO no Município: como nomear e quais as responsabilidades?" data-tags="DPO município nomeação responsabilidade">
+            <div class="card-body">
+              <span class="card-tag setor">🏛 Setor Público</span>
               <h4 class="card-title">DPO no Município: como nomear e quais as responsabilidades?</h4>
               <p class="card-excerpt">Guia completo para gestores públicos sobre o processo de nomeação do Encarregado e suas atribuições legais.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/cidadao-ms-lgpd.md" data-title="O que o cidadão de Mato Grosso do Sul ganha com a LGPD" data-tags="cidadão Mato Grosso do Sul MS direitos titular">
-            <div class="card-top">
-              <span class="card-cat-tag tag-setor">Setor Público</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/cidadao-ms-lgpd.md"
+             data-title="O que o cidadão de Mato Grosso do Sul ganha com a LGPD" data-tags="cidadão Mato Grosso do Sul MS direitos titular">
+            <div class="card-body">
+              <span class="card-tag setor">🏛 Setor Público</span>
               <h4 class="card-title">O que o cidadão de Mato Grosso do Sul ganha com a LGPD</h4>
               <p class="card-excerpt">Um olhar regional sobre como a lei protege os dados dos moradores do estado e quais direitos podem ser exercidos.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/concurso-publico-dados.md" data-title="Concurso Público e LGPD: como tratar dados dos candidatos?" data-tags="concurso público candidatos dados pessoais">
-            <div class="card-top">
-              <span class="card-cat-tag tag-setor">Setor Público</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/concurso-publico-dados.md"
+             data-title="Concurso Público e LGPD: como tratar dados dos candidatos?" data-tags="concurso público candidatos dados pessoais">
+            <div class="card-body">
+              <span class="card-tag setor">🏛 Setor Público</span>
               <h4 class="card-title">Concurso Público e LGPD: como tratar dados dos candidatos?</h4>
               <p class="card-excerpt">Orientações práticas para gestão dos dados pessoais durante todas as fases de um processo seletivo público.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/contratos-municipais-lgpd.md" data-title="Cláusulas LGPD obrigatórias em contratos municipais" data-tags="contratos municipais cláusula obrigatória fornecedor">
-            <div class="card-top">
-              <span class="card-cat-tag tag-setor">Setor Público</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/setor-publico/contratos-municipais-lgpd.md"
+             data-title="Cláusulas LGPD obrigatórias em contratos municipais" data-tags="contratos municipais cláusula obrigatória fornecedor">
+            <div class="card-body">
+              <span class="card-tag setor">🏛 Setor Público</span>
               <h4 class="card-title">Cláusulas LGPD obrigatórias em contratos municipais</h4>
               <p class="card-excerpt">Modelo de cláusulas de proteção de dados para incluir em contratos e licitações da administração pública.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
         </div>
       </section>
 
-      <!-- ───────── GESTÃO & GOVERNANÇA ───────── -->
+      <!-- ── GESTÃO & GOVERNANÇA ── -->
       <section class="cat-section visible" id="cat-gov" data-cat="gov">
         <div class="cat-section-header">
-          <div class="cat-section-icon icon-gov">📊</div>
+          <div class="cat-section-icon gov">📊</div>
           <div>
             <h3>Gestão & Governança</h3>
             <p>Ciclo de vida do dado, inventário, contratos e responsabilidade solidária</p>
           </div>
-          <span class="cat-count-badge badge-gov">24 artigos</span>
+          <span class="cat-section-badge gov">24 artigos</span>
         </div>
         <div class="articles-grid">
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/inventario-de-dados.md" data-title="Guia para criar um Inventário de Dados sem erros" data-tags="inventário dados mapeamento fluxo">
-            <div class="card-top">
-              <span class="card-cat-tag tag-gov">Governança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/inventario-de-dados.md"
+             data-title="Guia para criar um Inventário de Dados sem erros" data-tags="inventário dados mapeamento fluxo">
+            <div class="card-body">
+              <span class="card-tag gov">📊 Governança</span>
               <h4 class="card-title">Guia para criar um Inventário de Dados sem erros</h4>
               <p class="card-excerpt">Da identificação das bases de dados ao mapeamento de fluxos: como estruturar seu inventário corretamente.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/gestao-fornecedores-responsabilidade.md" data-title="Gestão de fornecedores: como evitar responsabilidade solidária" data-tags="fornecedor responsabilidade solidária contrato due diligence">
-            <div class="card-top">
-              <span class="card-cat-tag tag-gov">Governança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/gestao-fornecedores-responsabilidade.md"
+             data-title="Gestão de fornecedores: como evitar responsabilidade solidária" data-tags="fornecedor responsabilidade solidária contrato due diligence">
+            <div class="card-body">
+              <span class="card-tag gov">📊 Governança</span>
               <h4 class="card-title">Gestão de fornecedores: como evitar responsabilidade solidária</h4>
               <p class="card-excerpt">Cláusulas contratuais obrigatórias, due diligence de terceiros e o que exigir dos seus operadores de dados.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/ripd-guia.md" data-title="RIPD passo a passo: o que é e quando é obrigatório" data-tags="RIPD relatório impacto proteção dados obrigatório">
-            <div class="card-top">
-              <span class="card-cat-tag tag-gov">Governança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/ripd-guia.md"
+             data-title="RIPD passo a passo: o que é e quando é obrigatório" data-tags="RIPD relatório impacto proteção dados obrigatório">
+            <div class="card-body">
+              <span class="card-tag gov">📊 Governança</span>
               <h4 class="card-title">RIPD passo a passo: o que é e quando é obrigatório</h4>
               <p class="card-excerpt">Entenda quando a organização deve elaborar o Relatório de Impacto e como fazê-lo de forma estruturada.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/bases-legais-pratica.md" data-title="Bases legais na prática: qual usar em cada situação?" data-tags="bases legais consentimento legítimo interesse obrigação legal">
-            <div class="card-top">
-              <span class="card-cat-tag tag-gov">Governança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/bases-legais-pratica.md"
+             data-title="Bases legais na prática: qual usar em cada situação?" data-tags="bases legais consentimento legítimo interesse obrigação legal">
+            <div class="card-body">
+              <span class="card-tag gov">📊 Governança</span>
               <h4 class="card-title">Bases legais na prática: qual usar em cada situação?</h4>
               <p class="card-excerpt">Um guia decisório para escolher a base legal correta para cada operação de dados da sua organização.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/ciclo-vida-dado.md" data-title="Ciclo de vida do dado: da coleta ao descarte seguro" data-tags="ciclo vida dado coleta retenção descarte">
-            <div class="card-top">
-              <span class="card-cat-tag tag-gov">Governança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/ciclo-vida-dado.md"
+             data-title="Ciclo de vida do dado: da coleta ao descarte seguro" data-tags="ciclo vida dado coleta retenção descarte">
+            <div class="card-body">
+              <span class="card-tag gov">📊 Governança</span>
               <h4 class="card-title">Ciclo de vida do dado: da coleta ao descarte seguro</h4>
               <p class="card-excerpt">Como mapear e controlar o dado desde sua origem até o descarte, garantindo conformidade em todas as etapas.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/politica-privacidade.md" data-title="Como redigir uma Política de Privacidade eficaz" data-tags="política privacidade aviso cookies redação">
-            <div class="card-top">
-              <span class="card-cat-tag tag-gov">Governança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/gestao-governanca/politica-privacidade.md"
+             data-title="Como redigir uma Política de Privacidade eficaz" data-tags="política privacidade aviso cookies redação">
+            <div class="card-body">
+              <span class="card-tag gov">📊 Governança</span>
               <h4 class="card-title">Como redigir uma Política de Privacidade eficaz</h4>
               <p class="card-excerpt">Elementos obrigatórios, linguagem acessível e estrutura ideal para uma política de privacidade que cumpre a lei.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
         </div>
       </section>
 
-      <!-- ───────── SEGURANÇA DA INFORMAÇÃO ───────── -->
+      <!-- ── SEGURANÇA DA INFORMAÇÃO ── -->
       <section class="cat-section visible" id="cat-seg" data-cat="seg">
         <div class="cat-section-header">
-          <div class="cat-section-icon icon-seg">🔐</div>
+          <div class="cat-section-icon seg">🔐</div>
           <div>
             <h3>Segurança da Informação</h3>
             <p>Ransomware, criptografia, políticas e proteções técnicas</p>
           </div>
-          <span class="cat-count-badge badge-seg">16 artigos</span>
+          <span class="cat-section-badge seg">16 artigos</span>
         </div>
         <div class="articles-grid">
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca-da-informacao/politica-senhas-mesa-limpa.md" data-title="Política de Senhas e Mesa Limpa: o básico que ninguém faz" data-tags="senha mesa limpa política segurança básico">
-            <div class="card-top">
-              <span class="card-cat-tag tag-seg">Segurança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca-da-informacao/politica-senhas-mesa-limpa.md"
+             data-title="Política de Senhas e Mesa Limpa: o básico que ninguém faz" data-tags="senha mesa limpa política segurança básico">
+            <div class="card-body">
+              <span class="card-tag seg">🔐 Segurança</span>
               <h4 class="card-title">Política de Senhas e Mesa Limpa: o básico que ninguém faz</h4>
               <p class="card-excerpt">As duas medidas mais simples e mais negligenciadas de segurança da informação nas organizações brasileiras.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca-da-informacao/criptografia-nao-tecnicos.md" data-title="Guia de Criptografia para não técnicos" data-tags="criptografia não técnico segurança dado proteção">
-            <div class="card-top">
-              <span class="card-cat-tag tag-seg">Segurança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca-da-informacao/criptografia-nao-tecnicos.md"
+             data-title="Guia de Criptografia para não técnicos" data-tags="criptografia não técnico segurança dado proteção">
+            <div class="card-body">
+              <span class="card-tag seg">🔐 Segurança</span>
               <h4 class="card-title">Guia de Criptografia para não técnicos</h4>
               <p class="card-excerpt">O que você precisa saber sobre criptografia para tomar decisões corretas, sem precisar ser programador.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca-da-informacao/ransomware-60-minutos.md" data-title="Ransomware em órgãos públicos: o que fazer nos primeiros 60 minutos" data-tags="ransomware incidente resposta segurança órgão público">
-            <div class="card-top">
-              <span class="card-cat-tag tag-seg">Segurança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca-da-informacao/ransomware-60-minutos.md"
+             data-title="Ransomware em órgãos públicos: o que fazer nos primeiros 60 minutos" data-tags="ransomware incidente resposta segurança órgão público">
+            <div class="card-body">
+              <span class="card-tag seg">🔐 Segurança</span>
               <h4 class="card-title">Ransomware em órgãos públicos: primeiros 60 minutos</h4>
               <p class="card-excerpt">Protocolo de resposta a incidente de ransomware em órgão público com guia passo a passo para as primeiras horas.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca-da-informacao/notificacao-incidente.md" data-title="Quando e como notificar um incidente de dados à ANPD?" data-tags="incidente notificação ANPD vazamento prazo">
-            <div class="card-top">
-              <span class="card-cat-tag tag-seg">Segurança</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/seguranca-da-informacao/notificacao-incidente.md"
+             data-title="Quando e como notificar um incidente de dados à ANPD?" data-tags="incidente notificação ANPD vazamento prazo">
+            <div class="card-body">
+              <span class="card-tag seg">🔐 Segurança</span>
               <h4 class="card-title">Quando e como notificar um incidente de dados à ANPD?</h4>
               <p class="card-excerpt">Prazos, canais e conteúdo obrigatório da notificação de incidentes de segurança exigida pela LGPD.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
         </div>
       </section>
 
-      <!-- ───────── DIREITOS DO TITULAR ───────── -->
+      <!-- ── DIREITOS DO TITULAR ── -->
       <section class="cat-section visible" id="cat-dir" data-cat="dir">
         <div class="cat-section-header">
-          <div class="cat-section-icon icon-dir">👤</div>
+          <div class="cat-section-icon dir">👤</div>
           <div>
             <h3>Direitos do Titular</h3>
             <p>O que o cidadão pode exigir e como responder requisições</p>
           </div>
-          <span class="cat-count-badge badge-dir">12 artigos</span>
+          <span class="cat-section-badge dir">12 artigos</span>
         </div>
         <div class="articles-grid">
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/requisicao-15-dias.md" data-title="Como responder a uma requisição de acesso do titular em 15 dias" data-tags="requisição titular acesso prazo 15 dias resposta">
-            <div class="card-top">
-              <span class="card-cat-tag tag-dir">Direitos</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/requisicao-15-dias.md"
+             data-title="Como responder a uma requisição de acesso do titular em 15 dias" data-tags="requisição titular acesso prazo 15 dias resposta">
+            <div class="card-body">
+              <span class="card-tag dir">👤 Direitos</span>
               <h4 class="card-title">Como responder a uma requisição de acesso em 15 dias</h4>
               <p class="card-excerpt">Fluxo completo para atender requisições do titular dentro do prazo legal, com modelo de resposta incluído.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/direito-exclusao.md" data-title="Direito ao esquecimento vs. direito de exclusão na LGPD" data-tags="esquecimento exclusão direito titular dado">
-            <div class="card-top">
-              <span class="card-cat-tag tag-dir">Direitos</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/direito-exclusao.md"
+             data-title="Direito ao esquecimento vs. direito de exclusão na LGPD" data-tags="esquecimento exclusão direito titular dado">
+            <div class="card-body">
+              <span class="card-tag dir">👤 Direitos</span>
               <h4 class="card-title">Direito ao esquecimento vs. direito de exclusão na LGPD</h4>
               <p class="card-excerpt">Diferenças conceituais e práticas entre os dois direitos, e quando cada um se aplica no contexto brasileiro.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/consentimento-revogacao.md" data-title="Consentimento e revogação: o que o titular pode fazer?" data-tags="consentimento revogação titular direito retirada">
-            <div class="card-top">
-              <span class="card-cat-tag tag-dir">Direitos</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/consentimento-revogacao.md"
+             data-title="Consentimento e revogação: o que o titular pode fazer?" data-tags="consentimento revogação titular direito retirada">
+            <div class="card-body">
+              <span class="card-tag dir">👤 Direitos</span>
               <h4 class="card-title">Consentimento e revogação: o que o titular pode fazer?</h4>
               <p class="card-excerpt">Como funciona a revogação do consentimento e quais as obrigações da organização após esse pedido do titular.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/portabilidade.md" data-title="Portabilidade de dados: como implementar na prática?" data-tags="portabilidade dados titular implementação técnica">
-            <div class="card-top">
-              <span class="card-cat-tag tag-dir">Direitos</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/artigos/direito-titular/portabilidade.md"
+             data-title="Portabilidade de dados: como implementar na prática?" data-tags="portabilidade dados titular implementação técnica">
+            <div class="card-body">
+              <span class="card-tag dir">👤 Direitos</span>
               <h4 class="card-title">Portabilidade de dados: como implementar na prática?</h4>
               <p class="card-excerpt">Requisitos técnicos e jurídicos para atender o direito à portabilidade dos dados pessoais dos titulares.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-author">Adriano Israel</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
         </div>
       </section>
 
-      <!-- ───────── JURISPRUDÊNCIA & ANPD ───────── -->
+      <!-- ── JURISPRUDÊNCIA & ANPD ── -->
       <section class="cat-section visible" id="cat-anpd" data-cat="anpd">
         <div class="cat-section-header">
-          <div class="cat-section-icon icon-anpd">⚖</div>
+          <div class="cat-section-icon anpd">⚖</div>
           <div>
             <h3>Jurisprudência & ANPD</h3>
             <p>Decisões, sanções, resoluções e orientações oficiais</p>
           </div>
-          <span class="cat-count-badge badge-anpd">30 artigos</span>
+          <span class="cat-section-badge anpd">30 artigos</span>
         </div>
         <div class="articles-grid">
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/noticias/sancao-milionaria-orgao-publico.md" data-title="ANPD aplica primeira sanção milionária a órgão público por vazamento" data-tags="ANPD sanção multa órgão público vazamento">
-            <div class="card-top">
-              <span class="card-cat-tag tag-anpd">🔴 Urgente</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/noticias/sancao-milionaria-orgao-publico.md"
+             data-title="ANPD aplica primeira sanção milionária a órgão público por vazamento" data-tags="ANPD sanção multa órgão público vazamento">
+            <div class="card-body">
+              <span class="card-tag urgent">🔴 Urgente</span>
               <h4 class="card-title">ANPD aplica primeira sanção milionária a órgão público</h4>
-              <p class="card-excerpt">A ANPD concluiu investigação e aplicou multa inédita a prefeitura que expôs dados de 12 mil servidores.</p>
+              <p class="card-excerpt">A ANPD aplicou multa inédita a prefeitura que expôs dados de 12 mil servidores. Entenda o impacto para municípios.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-date">03/05/2025</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/noticias/resolucao-cd-anpd-19-cookies-rastreamento.md" data-title="ANPD publica resolução sobre cookies e rastreadores" data-tags="ANPD resolução cookies rastreadores consentimento">
-            <div class="card-top">
-              <span class="card-cat-tag tag-anpd">Resolução</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/noticias/resolucao-cd-anpd-19-cookies-rastreamento.md"
+             data-title="ANPD publica resolução sobre cookies e rastreadores" data-tags="ANPD resolução cookies rastreadores consentimento">
+            <div class="card-body">
+              <span class="card-tag anpd">⚖ Resolução</span>
               <h4 class="card-title">ANPD publica resolução sobre cookies e rastreadores</h4>
               <p class="card-excerpt">Novas regras sobre uso de cookies e tecnologias de rastreamento em sites e aplicações digitais brasileiras.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-date">15/04/2025</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/noticias/fiscalizacao-saude-anpd.md" data-title="Fiscalização do setor de saúde: ANPD intensifica ações" data-tags="ANPD fiscalização saúde dado sensível hospital">
-            <div class="card-top">
-              <span class="card-cat-tag tag-anpd">Fiscalização</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/noticias/fiscalizacao-saude-anpd.md"
+             data-title="Fiscalização do setor de saúde: ANPD intensifica ações" data-tags="ANPD fiscalização saúde dado sensível hospital">
+            <div class="card-body">
+              <span class="card-tag anpd">⚖ Fiscalização</span>
               <h4 class="card-title">Fiscalização do setor de saúde: ANPD intensifica ações</h4>
               <p class="card-excerpt">Aumento das investigações em hospitais, clínicas e operadoras de planos de saúde — o que muda para o setor.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-date">08/04/2025</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
-          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/noticias/decreto-ia-dados.md" data-title="Decreto regulamenta uso de IA e proteção de dados no Brasil" data-tags="IA inteligência artificial regulamentação decreto dados">
-            <div class="card-top">
-              <span class="card-cat-tag tag-anpd">Regulamentação</span>
+          <a class="article-card" href="artigo.html?file=/blog-lgpd/content/noticias/decreto-ia-dados.md"
+             data-title="Decreto regulamenta uso de IA e proteção de dados no Brasil" data-tags="IA inteligência artificial regulamentação decreto dados">
+            <div class="card-body">
+              <span class="card-tag anpd">⚖ Regulamentação</span>
               <h4 class="card-title">Decreto regulamenta uso de IA e proteção de dados no Brasil</h4>
               <p class="card-excerpt">O novo decreto federal estabelece diretrizes para uso de inteligência artificial por órgãos públicos e empresas.</p>
             </div>
-            <div class="card-bottom">
+            <div class="card-footer">
               <span class="card-date">01/04/2025</span>
-              <span class="card-link">Ler</span>
+              <span class="card-cta">Ler</span>
             </div>
           </a>
 
         </div>
       </section>
 
-      <!-- ───────── GLOSSÁRIO ───────── -->
+      <!-- ── GLOSSÁRIO ── -->
       <section class="cat-section visible" id="cat-glos" data-cat="glos">
         <div class="cat-section-header">
-          <div class="cat-section-icon icon-glos">📖</div>
+          <div class="cat-section-icon glos">📖</div>
           <div>
             <h3>Glossário LGPD</h3>
             <p>Todos os termos técnicos explicados de forma acessível</p>
           </div>
-          <span class="cat-count-badge badge-glos">60+ termos</span>
+          <span class="cat-section-badge glos">60+ termos</span>
         </div>
         <div class="articles-grid">
 
-          <a class="article-card" href="glossario.html#dpo" data-title="DPO — Encarregado de Proteção de Dados" data-tags="DPO encarregado dados glossário termo">
-            <div class="card-top">
-              <span class="card-cat-tag tag-glos">Glossário</span>
+          <a class="article-card" href="glossario.html#dpo"
+             data-title="DPO — Encarregado de Proteção de Dados" data-tags="DPO encarregado dados glossário termo">
+            <div class="card-body">
+              <span class="card-tag glos">📖 Glossário</span>
               <h4 class="card-title">DPO — Encarregado de Proteção de Dados</h4>
               <p class="card-excerpt">O que é, quando é obrigatório, quais são suas funções e como nomear adequadamente o encarregado.</p>
             </div>
-            <div class="card-bottom">
-              <span class="card-link">Ver definição</span>
+            <div class="card-footer">
+              <span class="card-cta">Ver definição</span>
             </div>
           </a>
 
-          <a class="article-card" href="glossario.html#titular" data-title="Titular dos Dados" data-tags="titular dados pessoa natural glossário">
-            <div class="card-top">
-              <span class="card-cat-tag tag-glos">Glossário</span>
+          <a class="article-card" href="glossario.html#titular"
+             data-title="Titular dos Dados" data-tags="titular dados pessoa natural glossário">
+            <div class="card-body">
+              <span class="card-tag glos">📖 Glossário</span>
               <h4 class="card-title">Titular dos Dados</h4>
               <p class="card-excerpt">Quem é o titular, quais seus direitos garantidos pela LGPD e como exercê-los perante o controlador.</p>
             </div>
-            <div class="card-bottom">
-              <span class="card-link">Ver definição</span>
+            <div class="card-footer">
+              <span class="card-cta">Ver definição</span>
             </div>
           </a>
 
-          <a class="article-card" href="glossario.html#ripd" data-title="RIPD — Relatório de Impacto à Proteção de Dados" data-tags="RIPD relatório impacto dados glossário">
-            <div class="card-top">
-              <span class="card-cat-tag tag-glos">Glossário</span>
+          <a class="article-card" href="glossario.html#ripd"
+             data-title="RIPD — Relatório de Impacto à Proteção de Dados" data-tags="RIPD relatório impacto dados glossário">
+            <div class="card-body">
+              <span class="card-tag glos">📖 Glossário</span>
               <h4 class="card-title">RIPD — Relatório de Impacto à Proteção de Dados</h4>
               <p class="card-excerpt">Documento obrigatório para operações de risco: o que deve conter, quando elaborar e quem assina.</p>
             </div>
-            <div class="card-bottom">
-              <span class="card-link">Ver definição</span>
+            <div class="card-footer">
+              <span class="card-cta">Ver definição</span>
             </div>
           </a>
 
-          <a class="article-card" href="glossario.html#anonimizacao" data-title="Anonimização vs. Pseudonimização" data-tags="anonimização pseudonimização dado glossário diferença">
-            <div class="card-top">
-              <span class="card-cat-tag tag-glos">Glossário</span>
+          <a class="article-card" href="glossario.html#anonimizacao"
+             data-title="Anonimização vs. Pseudonimização" data-tags="anonimização pseudonimização dado glossário diferença">
+            <div class="card-body">
+              <span class="card-tag glos">📖 Glossário</span>
               <h4 class="card-title">Anonimização vs. Pseudonimização</h4>
               <p class="card-excerpt">Diferenças práticas e jurídicas entre os dois processos e quando cada um é adequado para sua organização.</p>
             </div>
-            <div class="card-bottom">
-              <span class="card-link">Ver definição</span>
+            <div class="card-footer">
+              <span class="card-cta">Ver definição</span>
             </div>
           </a>
 
         </div>
       </section>
 
-      <!-- Estado vazio (busca sem resultado) -->
+      <!-- Estado vazio -->
       <div class="empty-state" id="emptyState" style="display:none;">
         <div class="empty-icon">🔍</div>
         <p>Nenhum artigo encontrado para "<strong id="emptyQuery"></strong>".</p>
-        <p style="margin-top:.5rem; font-size:.85rem;">Tente outras palavras-chave ou navegue pelas categorias no menu ao lado.</p>
+        <p>Tente outras palavras-chave ou navegue pelas categorias no menu ao lado.</p>
       </div>
 
     </main>
@@ -1185,13 +1066,13 @@
 <footer class="footer">
   <div class="container footer-grid">
     <div>
-      <div class="logo">
-        <span class="logo-icon">⚖</span>
-        <div>
-          <span class="logo-title" style="font-family:'Playfair Display',serif; color:#fff; font-size:1.1rem;">Blog <strong>LGPD</strong></span>
-          <span class="logo-sub" style="font-size:.7rem; color:#888; display:block;">Proteção de Dados & Privacidade</span>
+      <a href="../index.html" class="logo" style="margin-bottom:12px;display:inline-flex;">
+        <div class="logo-shield" style="width:36px;height:36px;"><span class="logo-shield-icon" style="font-size:1.1rem;">🛡</span></div>
+        <div class="logo-text-wrap">
+          <span class="logo-title" style="color:white;font-size:1.05rem;">Guardião</span>
+          <span class="logo-sub">Sistema de LGPD</span>
         </div>
-      </div>
+      </a>
       <p class="footer-desc">Conteúdo especializado em LGPD para o Brasil. Da teoria à prática.</p>
     </div>
     <div>
@@ -1211,7 +1092,6 @@
         <li><a href="noticias.html">Jurisprudência & Notícias</a></li>
         <li><a href="downloads.html">Central de Downloads</a></li>
         <li><a href="glossario.html">Glossário</a></li>
-        <li><a href="categorias.html">Categorias</a></li>
         <li><a href="cursos.html">Cursos & Formação</a></li>
       </ul>
     </div>
@@ -1225,135 +1105,98 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2025 Blog LGPD · Adriano Israel · Todos os direitos reservados · Lei nº 13.709/2018</p>
+    <p>© 2025 Guardião — Sistema de LGPD · Adriano Israel · Todos os direitos reservados · Lei nº 13.709/2018</p>
   </div>
 </footer>
 
+<script src="../assets/js/script.js"></script>
 <script>
-  // ── Dados das categorias ──────────────────────────
   const CATEGORIES = {
-    setor: { label: 'Setor Público',           count: 18 },
-    gov:   { label: 'Gestão & Governança',     count: 24 },
-    seg:   { label: 'Segurança da Informação', count: 16 },
-    dir:   { label: 'Direitos do Titular',     count: 12 },
-    anpd:  { label: 'Jurisprudência & ANPD',   count: 30 },
-    glos:  { label: 'Glossário LGPD',          count: '60+' },
+    setor: { label: 'Setor Público',            count: '18' },
+    gov:   { label: 'Gestão & Governança',      count: '24' },
+    seg:   { label: 'Segurança da Informação',  count: '16' },
+    dir:   { label: 'Direitos do Titular',      count: '12' },
+    anpd:  { label: 'Jurisprudência & ANPD',    count: '30' },
+    glos:  { label: 'Glossário LGPD',           count: '60+' },
   };
 
   let currentCat = 'all';
 
-  // ── Filtro por categoria ──────────────────────────
   function filterCategory(cat, clickedEl, fromSidebar = false) {
     currentCat = cat;
 
-    // Limpa busca
     document.getElementById('searchInput').value = '';
     document.getElementById('emptyState').style.display = 'none';
+    document.querySelectorAll('.article-card').forEach(c => c.style.display = '');
 
-    // Ativa pill correta
-    document.querySelectorAll('.cat-pill').forEach(p => {
-      p.classList.toggle('active', p.dataset.cat === cat);
-    });
+    // Pills
+    document.querySelectorAll('.filter-pill').forEach(p =>
+      p.classList.toggle('active', p.dataset.cat === cat));
 
-    // Ativa sidebar btn
-    document.querySelectorAll('.sidebar-cat-btn').forEach(b => {
-      b.classList.remove('active');
-    });
-    document.querySelectorAll('.sidebar-cat-btn').forEach(b => {
-      const bCat = b.closest('li')?.querySelector('.scat-icon')?.parentElement;
-      if (b.onclick && b.onclick.toString().includes(`'${cat}'`)) {
-        b.classList.add('active');
-      }
-    });
-    // Melhor abordagem: marcar pelo onclick
+    // Sidebar btns
     document.querySelectorAll('.sidebar-cat-btn').forEach(b => {
       const fn = b.getAttribute('onclick') || '';
-      if (fn.includes(`'${cat}'`)) b.classList.add('active');
+      b.classList.toggle('active', fn.includes(`'${cat}'`));
     });
 
-    // Mostra/oculta seções
+    // Seções
     document.querySelectorAll('.cat-section').forEach(s => {
-      if (cat === 'all') {
-        s.classList.add('visible');
-      } else {
-        s.classList.toggle('visible', s.dataset.cat === cat);
-      }
+      s.classList.toggle('visible', cat === 'all' || s.dataset.cat === cat);
     });
 
-    // Atualiza label
-    const label = document.getElementById('sectionLabel');
+    // Label
+    const h2  = document.querySelector('#sectionLabel h2');
     const badge = document.getElementById('countBadge');
     if (cat === 'all') {
-      label.querySelector('h2').textContent = 'Todos os Artigos';
+      h2.textContent = 'Todos os Artigos';
       badge.textContent = '100 artigos';
     } else {
       const info = CATEGORIES[cat];
-      label.querySelector('h2').textContent = info.label;
+      h2.textContent = info.label;
       badge.textContent = info.count + ' artigos';
     }
 
-    // Scroll suave para o topo do conteúdo
     if (fromSidebar) {
       document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
-  // ── Busca ─────────────────────────────────────────
   function handleSearch(query) {
     const q = query.trim().toLowerCase();
+    if (!q) { filterCategory(currentCat, null); return; }
 
-    // Reset: mostra estado padrão se vazio
-    if (!q) {
-      filterCategory(currentCat, null);
-      return;
-    }
-
-    // Mostra todas as seções para busca cross-categoria
     document.querySelectorAll('.cat-section').forEach(s => s.classList.add('visible'));
 
-    let totalVisible = 0;
-
+    let total = 0;
     document.querySelectorAll('.article-card').forEach(card => {
-      const title = (card.dataset.title || '').toLowerCase();
-      const tags  = (card.dataset.tags  || '').toLowerCase();
-      const match = title.includes(q) || tags.includes(q);
-
-      card.style.display = match ? 'flex' : 'none';
-      if (match) totalVisible++;
+      const match =
+        (card.dataset.title || '').toLowerCase().includes(q) ||
+        (card.dataset.tags  || '').toLowerCase().includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) total++;
     });
 
-    // Esconde seções sem resultado
     document.querySelectorAll('.cat-section').forEach(s => {
-      const visible = [...s.querySelectorAll('.article-card')].some(c => c.style.display !== 'none');
-      s.classList.toggle('visible', visible);
+      const hasVisible = [...s.querySelectorAll('.article-card')].some(c => c.style.display !== 'none');
+      s.classList.toggle('visible', hasVisible);
     });
 
-    // Label
-    const badge = document.getElementById('countBadge');
-    document.getElementById('sectionLabel').querySelector('h2').textContent = `Resultados para "${query}"`;
-    badge.textContent = totalVisible + (totalVisible === 1 ? ' artigo' : ' artigos');
-
-    // Empty state
-    document.getElementById('emptyState').style.display = totalVisible === 0 ? 'block' : 'none';
+    document.querySelector('#sectionLabel h2').textContent = `Resultados para "${query}"`;
+    document.getElementById('countBadge').textContent = total + (total === 1 ? ' artigo' : ' artigos');
+    document.getElementById('emptyState').style.display = total === 0 ? 'block' : 'none';
     document.getElementById('emptyQuery').textContent = query;
   }
 
-  // ── Busca por tag (sidebar) ───────────────────────
   function searchByTag(tag) {
-    const input = document.getElementById('searchInput');
-    input.value = tag;
+    document.getElementById('searchInput').value = tag;
     handleSearch(tag);
     document.querySelector('.main-content').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  // ── Init ──────────────────────────────────────────
-  // Verificar se há parâmetro ?cat= na URL
+  // Parâmetro ?cat= na URL
   (function init() {
-    const params = new URLSearchParams(window.location.search);
-    const cat = params.get('cat');
-    if (cat && CATEGORIES[cat]) {
-      filterCategory(cat, null);
-    }
+    const cat = new URLSearchParams(window.location.search).get('cat');
+    if (cat && CATEGORIES[cat]) filterCategory(cat, null);
   })();
 </script>
 
