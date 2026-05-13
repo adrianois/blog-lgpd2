@@ -2,43 +2,123 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cursos & Formação | Academia LGPD</title>
+  <title>Cursos & Formação | Guardião — Sistema de LGPD</title>
+  <meta name="description" content="Formações práticas em LGPD para servidores públicos, DPOs e consultores. Do básico à implementação completa.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
-    .cursos-hero { background: var(--navy); color: white; padding: 72px 0 56px; }
-    .cursos-hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2rem,4vw,3rem); margin-bottom:12px; }
-    .cursos-hero h1 em { color:var(--gold); font-style:normal; }
-    .cursos-hero p { color:rgba(255,255,255,.7); font-size:1.05rem; max-width:560px; }
-    .nivel-badge { display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.1em; text-transform:uppercase; padding:4px 12px; border-radius:20px; margin-bottom:16px; }
-    .nivel-0 { background:rgba(46,125,50,.25); color:#81c784; }
-    .nivel-1 { background:rgba(201,168,76,.25); color:var(--gold-light); }
-    .nivel-2 { background:rgba(183,28,28,.25); color:#ef9a9a; }
-    .curso-full-card { background:var(--white); border:1px solid var(--gray-border); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); }
-    .curso-full-card + .curso-full-card { margin-top:32px; }
-    .curso-card-inner { display:grid; grid-template-columns:1fr 320px; }
-    .curso-body { padding:36px; }
-    .curso-body h2 { font-family:'Playfair Display',serif; font-size:1.6rem; color:var(--navy); margin-bottom:8px; }
-    .curso-body .desc { color:var(--text-muted); font-size:.95rem; margin-bottom:24px; line-height:1.7; }
-    .modulos-list { list-style:none; margin-bottom:24px; }
-    .modulos-list li { display:flex; align-items:flex-start; gap:10px; margin-bottom:10px; font-size:.9rem; }
-    .modulos-list li::before { content:'✓'; color:var(--gold); font-weight:700; flex-shrink:0; margin-top:1px; }
-    .curso-sidebar { background:var(--navy); padding:36px; display:flex; flex-direction:column; justify-content:center; gap:16px; }
-    .curso-preco { font-family:'Playfair Display',serif; font-size:2.2rem; color:var(--gold); }
-    .curso-preco small { font-size:.9rem; color:rgba(255,255,255,.5); font-family:inherit; }
-    .curso-sidebar p { color:rgba(255,255,255,.6); font-size:.85rem; }
-    .curso-sidebar .btn { width:100%; justify-content:center; }
-    @media(max-width:760px){ .curso-card-inner{grid-template-columns:1fr} }
+    /* ── Estilos exclusivos de Cursos ── */
+    .nivel-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 18px;
+    }
+    .nivel-0 { background: rgba(13,122,95,0.2);  color: #4fd1a5; }
+    .nivel-1 { background: rgba(0,201,177,0.15); color: var(--cyan); }
+    .nivel-2 { background: rgba(192,57,43,0.2);  color: #f4a09a; }
+
+    .curso-full-card {
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: box-shadow var(--transition);
+    }
+    .curso-full-card:hover { box-shadow: var(--shadow-lg); }
+    .curso-full-card + .curso-full-card { margin-top: 32px; }
+
+    .curso-card-inner {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+    }
+    @media (max-width: 760px) { .curso-card-inner { grid-template-columns: 1fr; } }
+
+    .curso-body { padding: 36px 40px; }
+    .curso-body h2 {
+      font-family: 'Source Serif 4', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      margin-bottom: 10px;
+    }
+    .curso-body .desc { color: var(--text-muted); font-size: 0.94rem; margin-bottom: 24px; line-height: 1.75; }
+
+    .modulos-list { list-style: none; margin-bottom: 28px; }
+    .modulos-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .modulos-list li::before {
+      content: '✓';
+      color: var(--cyan-dark);
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .curso-sidebar {
+      background: var(--shield-gradient);
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .curso-sidebar::before {
+      content: '🎓';
+      position: absolute;
+      bottom: -20px;
+      right: -10px;
+      font-size: 7rem;
+      opacity: 0.06;
+      line-height: 1;
+    }
+    .curso-preco {
+      font-family: 'Source Serif 4', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+    .curso-preco small { font-size: 0.88rem; color: rgba(255,255,255,0.45); font-family: 'Montserrat', sans-serif; }
+    .curso-sidebar p { color: rgba(255,255,255,0.6); font-size: 0.84rem; line-height: 1.6; }
+    .curso-sidebar .btn { width: 100%; justify-content: center; margin-top: 4px; }
   </style>
 </head>
 <body>
-  <div class="topbar"><span>📋 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Leia mais</a></span><span class="topbar-right">📧 adriano.israel@live.com</span></div>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span>🛡 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Ler análise completa</a></span>
+    <span class="topbar-right">📧 adriano.israel@live.com</span>
+  </div>
+
+  <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header-inner">
-      <div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div>
+      <a href="../index.html" class="logo">
+        <div class="logo-shield">
+          <span class="logo-shield-icon">🛡</span>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="logo-title">Guardião</span>
+          <span class="logo-sub">Sistema de LGPD</span>
+        </div>
+      </a>
       <nav class="nav" id="nav">
-        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html" class="nav-link">Início</a>
         <a href="lgpd-descomplicada.html" class="nav-link">LGPD Descomplicada</a>
         <a href="noticias.html" class="nav-link">Jurisprudência & Notícias</a>
         <a href="downloads.html" class="nav-link">Downloads</a>
@@ -46,20 +126,23 @@
         <a href="categorias.html" class="nav-link">Categorias</a>
         <a href="cursos.html" class="nav-link nav-cta active">Cursos & Formação</a>
       </nav>
-      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <section class="cursos-hero">
+  <!-- PAGE HERO -->
+  <div class="page-hero">
     <div class="container">
-      <div class="hero-badge">🎓 Academia LGPD</div>
-      <h1>Formações <em>Práticas</em><br>em Proteção de Dados</h1>
+      <div class="hero-badge">🎓 Academia Guardião LGPD</div>
+      <h1>Formações <em>Práticas</em> em Proteção de Dados</h1>
       <p>Três níveis de formação para servidores públicos, Encarregados (DPOs) e consultores. Do básico à implementação completa.</p>
     </div>
-  </section>
+  </div>
 
+  <!-- CURSOS -->
   <section class="section">
     <div class="container">
+
       <!-- NÍVEL 1 -->
       <div class="curso-full-card">
         <div class="curso-card-inner">
@@ -72,7 +155,7 @@
               <li>Identificando dados pessoais no dia a dia do serviço público</li>
               <li>Responsabilidades do servidor e o que pode dar errado</li>
               <li>Boas práticas: mesa limpa, senhas seguras e compartilhamento de dados</li>
-              <li>Certificado de conclusão digital</li>
+              <li>Certificado de conclusão digital incluso</li>
             </ul>
             <a href="mailto:adriano.israel@live.com" class="btn btn-primary">Quero me inscrever gratuitamente</a>
           </div>
@@ -146,19 +229,78 @@
     </div>
   </section>
 
-  <!-- Cronograma -->
+  <!-- CRONOGRAMA -->
   <section class="section section-gray">
     <div class="container">
       <div class="section-header"><h2>Cronograma de Lançamento</h2></div>
       <div class="trilha-grid">
-        <div class="trilha-card"><div class="trilha-num">Mês 1</div><h3>Fundamentos & Diagnóstico</h3><p>Lançamento do E-book Grátis: Checklist da Fase 1. Conteúdo sobre mapeamento de dados e diagnóstico inicial.</p></div>
-        <div class="trilha-card"><div class="trilha-num">Mês 2</div><h3>Segurança da Informação</h3><p>Webinar gratuito: Como proteger a rede da sua Câmara Municipal. Abertura de turma piloto do Nível 1.</p></div>
-        <div class="trilha-card"><div class="trilha-num">Mês 3</div><h3>Formação de DPO</h3><p>Abertura das matrículas: Curso Formação DPO Master. Primeiras turmas com desconto de lançamento.</p></div>
+        <div class="trilha-card">
+          <div class="trilha-num">Mês 1</div>
+          <h3>Fundamentos & Diagnóstico</h3>
+          <p>Lançamento do E-book Grátis: Checklist da Fase 1. Conteúdo sobre mapeamento de dados e diagnóstico inicial.</p>
+        </div>
+        <div class="trilha-card">
+          <div class="trilha-num">Mês 2</div>
+          <h3>Segurança da Informação</h3>
+          <p>Webinar gratuito: Como proteger a rede da sua Câmara Municipal. Abertura de turma piloto do Nível 1.</p>
+        </div>
+        <div class="trilha-card">
+          <div class="trilha-num">Mês 3</div>
+          <h3>Formação de DPO</h3>
+          <p>Abertura das matrículas: Curso Formação DPO Master. Primeiras turmas com desconto de lançamento.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <footer class="footer"><div class="container footer-grid"><div><div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div><p class="footer-desc">Conteúdo especializado em LGPD para o Brasil.</p></div><div><h4>Seções</h4><ul><li><a href="lgpd-descomplicada.html">LGPD Descomplicada</a></li><li><a href="noticias.html">Jurisprudência</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="glossario.html">Glossário</a></li><li><a href="cursos.html">Cursos</a></li></ul></div><div><h4>Contato</h4><ul><li>✉️ adriano.israel@live.com</li><li>📸 @adrianoisrael7</li><li>📍 Mato Grosso do Sul, Brasil</li></ul></div></div><div class="footer-bottom"><p>© 2025 Blog LGPD · Adriano Israel · Todos os direitos reservados</p></div></footer>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="../index.html" class="logo" style="margin-bottom:12px;display:inline-flex;">
+          <div class="logo-shield" style="width:36px;height:36px;"><span class="logo-shield-icon" style="font-size:1.1rem;">🛡</span></div>
+          <div class="logo-text-wrap">
+            <span class="logo-title" style="color:white;font-size:1.05rem;">Guardião</span>
+            <span class="logo-sub">Sistema de LGPD</span>
+          </div>
+        </a>
+        <p class="footer-desc">Conteúdo especializado em LGPD para o Brasil. Da teoria à prática, com foco em resultado real.</p>
+      </div>
+      <div>
+        <h4>Seções</h4>
+        <ul>
+          <li><a href="lgpd-descomplicada.html">LGPD Descomplicada</a></li>
+          <li><a href="noticias.html">Jurisprudência & Notícias</a></li>
+          <li><a href="downloads.html">Central de Downloads</a></li>
+          <li><a href="glossario.html">Glossário</a></li>
+          <li><a href="categorias.html">Categorias</a></li>
+          <li><a href="cursos.html">Cursos & Formação</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="categorias.html">Setor Público</a></li>
+          <li><a href="categorias.html">Gestão & Governança</a></li>
+          <li><a href="categorias.html">Segurança da Informação</a></li>
+          <li><a href="categorias.html">Direitos do Titular</a></li>
+          <li><a href="categorias.html">ANPD & Regulamentação</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li>✉️ adriano.israel@live.com</li>
+          <li>📸 @adrianoisrael7</li>
+          <li>📍 Mato Grosso do Sul, Brasil</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Guardião — Sistema de LGPD · Adriano Israel · Todos os direitos reservados · Lei nº 13.709/2018</p>
+    </div>
+  </footer>
+
   <script src="../assets/js/script.js"></script>
 </body>
 </html>

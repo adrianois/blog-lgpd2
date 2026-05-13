@@ -2,18 +2,34 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jurisprudência & Notícias | Blog LGPD</title>
+  <title>Jurisprudência & Notícias | Guardião — Sistema de LGPD</title>
+  <meta name="description" content="Decisões da ANPD, tribunais, novas regulamentações e o que muda na prática da proteção de dados.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-  <div class="topbar"><span>📋 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Leia mais</a></span><span class="topbar-right">📧 adriano.israel@live.com</span></div>
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <span>🛡 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Ler análise completa</a></span>
+    <span class="topbar-right">📧 adriano.israel@live.com</span>
+  </div>
+
+  <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header-inner">
-      <div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div>
+      <a href="../index.html" class="logo">
+        <div class="logo-shield">
+          <span class="logo-shield-icon">🛡</span>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="logo-title">Guardião</span>
+          <span class="logo-sub">Sistema de LGPD</span>
+        </div>
+      </a>
       <nav class="nav" id="nav">
-        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html" class="nav-link">Início</a>
         <a href="lgpd-descomplicada.html" class="nav-link">LGPD Descomplicada</a>
         <a href="noticias.html" class="nav-link active">Jurisprudência & Notícias</a>
         <a href="downloads.html" class="nav-link">Downloads</a>
@@ -21,23 +37,26 @@
         <a href="categorias.html" class="nav-link">Categorias</a>
         <a href="cursos.html" class="nav-link nav-cta">Cursos & Formação</a>
       </nav>
-      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </header>
 
-  <section class="page-hero">
+  <!-- PAGE HERO -->
+  <div class="page-hero">
     <div class="container">
       <div class="hero-badge">⚖ Atualizado Semanalmente</div>
       <h1>Jurisprudência <em>& Notícias</em></h1>
       <p>Decisões da ANPD, tribunais, novas regulamentações e o que muda na prática da proteção de dados.</p>
     </div>
-  </section>
+  </div>
 
+  <!-- ÚLTIMAS DA ANPD -->
   <section class="section">
     <div class="container">
       <div class="section-header"><h2>Últimas da ANPD</h2></div>
       <div class="artigos-grid">
-        <article class="artigo-card" style="border-left:3px solid #b71c1c">
+
+        <article class="artigo-card" style="border-left: 3px solid var(--seguranca);">
           <div class="artigo-cat seguranca">🔴 Sanção</div>
           <h3>ANPD aplica primeira sanção milionária a órgão público por vazamento de dados</h3>
           <p>Prefeitura multada após exposição de banco de dados com informações de 12 mil servidores. Decisão histórica que sinaliza endurecimento da fiscalização.</p>
@@ -46,7 +65,8 @@
             <a href="artigo.html?file=/blog-lgpd/content/noticias/sancao-milionaria-orgao-publico.md" class="btn-text">Ler →</a>
           </div>
         </article>
-        <article class="artigo-card" style="border-left:3px solid var(--gold)">
+
+        <article class="artigo-card" style="border-left: 3px solid var(--cyan);">
           <div class="artigo-cat governanca">📜 Resolução</div>
           <h3>Resolução CD/ANPD nº 19: Novas regras sobre uso de cookies e rastreamento</h3>
           <p>A ANPD publicou orientações complementares sobre bases legais para uso de cookies analíticos e de publicidade direcionada.</p>
@@ -55,6 +75,7 @@
             <a href="artigo.html?file=/blog-lgpd/content/noticias/resolucao-cd-anpd-19-cookies-rastreamento.md" class="btn-text">Ler →</a>
           </div>
         </article>
+
         <article class="artigo-card">
           <div class="artigo-cat setor">🏛 Setor Público</div>
           <h3>ANPD publica guia para adequação de municípios com menos de 50 mil habitantes</h3>
@@ -64,6 +85,7 @@
             <a href="artigo.html?file=/blog-lgpd/content/noticias/anpd-guia-municipios-50-mil-habitantes.md" class="btn-text">Ler →</a>
           </div>
         </article>
+
         <article class="artigo-card">
           <div class="artigo-cat direitos">👤 Titular</div>
           <h3>STJ firma entendimento sobre danos morais em vazamento de dados pessoais</h3>
@@ -73,6 +95,7 @@
             <a href="artigo.html?file=/blog-lgpd/content/noticias/stj-danos-morais-vazamento-dados.md" class="btn-text">Ler →</a>
           </div>
         </article>
+
         <article class="artigo-card">
           <div class="artigo-cat governanca">📊 Regulação</div>
           <h3>Regulamento de Comunicação de Incidentes: prazo de 72h é confirmado</h3>
@@ -82,6 +105,7 @@
             <a href="artigo.html?file=/blog-lgpd/content/noticias/regulamento-comunicacao-incidentes-72h.md" class="btn-text">Ler →</a>
           </div>
         </article>
+
         <article class="artigo-card">
           <div class="artigo-cat seguranca">🔐 Segurança</div>
           <h3>Ataque de ransomware expõe dados de 400 mil pacientes em hospital federal</h3>
@@ -91,24 +115,29 @@
             <a href="artigo.html?file=/blog-lgpd/content/noticias/ataque-ransomware-hospital-federal.md" class="btn-text">Ler →</a>
           </div>
         </article>
+
       </div>
     </div>
   </section>
 
+  <!-- ANÁLISE DE DECISÕES -->
   <section class="section section-gray">
     <div class="container">
       <div class="section-header"><h2>Análise de Decisões</h2></div>
       <div class="artigos-grid">
+
         <article class="artigo-card">
-          <div class="artigo-cat governanca">Análise</div>
+          <div class="artigo-cat governanca">📊 Análise</div>
           <h3>O que muda com a Resolução de Cookies da ANPD para os municípios</h3>
           <p>Análise prática do impacto nas páginas institucionais de prefeituras e câmaras municipais que utilizam ferramentas de análise de tráfego.</p>
           <div class="artigo-footer">
             <span class="autor">Adriano Israel</span>
-            <a href="artigo.html?file=/blog-lgpd/content/noticias/resolucao-cd-anpd-19-cookies-rastreamento.md" class="btn-text">Ler →</a></div>
+            <a href="artigo.html?file=/blog-lgpd/content/noticias/resolucao-cd-anpd-19-cookies-rastreamento.md" class="btn-text">Ler →</a>
+          </div>
         </article>
+
         <article class="artigo-card">
-          <div class="artigo-cat setor">Análise</div>
+          <div class="artigo-cat setor">🏛 Análise</div>
           <h3>LAI e LGPD: análise de 5 acórdãos recentes do TCU sobre transparência e privacidade</h3>
           <p>Como os tribunais têm equilibrado o direito à informação pública com a proteção de dados pessoais de servidores e terceiros.</p>
           <div class="artigo-footer">
@@ -116,8 +145,9 @@
             <a href="artigo.html?file=/blog-lgpd/content/noticias/lai-lgpd-acordaos-tcu-transparencia-privacidade.md" class="btn-text">Ler →</a>
           </div>
         </article>
+
         <article class="artigo-card">
-          <div class="artigo-cat direitos">Análise</div>
+          <div class="artigo-cat direitos">👤 Análise</div>
           <h3>Responsabilidade solidária em condomínios: o que dizem as primeiras decisões</h3>
           <p>Casos de câmeras de segurança e compartilhamento de dados de moradores chegam ao judiciário. Leia os precedentes.</p>
           <div class="artigo-footer">
@@ -125,18 +155,73 @@
             <a href="artigo.html?file=/blog-lgpd/content/noticias/responsabilidade-solidaria-condominios-decisoes.md" class="btn-text">Ler →</a>
           </div>
         </article>
+
       </div>
     </div>
   </section>
 
+  <!-- NEWSLETTER -->
   <section class="section-newsletter">
     <div class="container newsletter-inner">
-      <div><h2>Newsletter Jurídica Semanal</h2><p>Resumo das decisões da ANPD e tribunais toda semana. Curadoria especializada direto no seu e-mail.</p></div>
-      <form class="newsletter-form" onsubmit="return false;"><input type="email" placeholder="seu@email.com" required /><button type="submit" class="btn btn-primary">Assinar newsletter</button></form>
+      <div>
+        <h2>Newsletter Jurídica Semanal</h2>
+        <p>Resumo das decisões da ANPD e tribunais toda semana. Curadoria especializada direto no seu e-mail.</p>
+      </div>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="seu@email.com" required />
+        <button type="submit" class="btn btn-primary">Assinar newsletter</button>
+      </form>
     </div>
   </section>
 
-  <footer class="footer"><div class="container footer-grid"><div><div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div><p class="footer-desc">Conteúdo especializado em LGPD para o Brasil.</p></div><div><h4>Seções</h4><ul><li><a href="lgpd-descomplicada.html">LGPD Descomplicada</a></li><li><a href="noticias.html">Jurisprudência</a></li><li><a href="downloads.html">Downloads</a></li><li><a href="glossario.html">Glossário</a></li><li><a href="cursos.html">Cursos</a></li></ul></div><div><h4>Contato</h4><ul><li>✉️ adriano.israel@live.com</li><li>📸 @adrianoisrael7</li><li>📍 Mato Grosso do Sul, Brasil</li></ul></div></div><div class="footer-bottom"><p>© 2025 Blog LGPD · Adriano Israel · Todos os direitos reservados</p></div></footer>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="../index.html" class="logo" style="margin-bottom:12px;display:inline-flex;">
+          <div class="logo-shield" style="width:36px;height:36px;"><span class="logo-shield-icon" style="font-size:1.1rem;">🛡</span></div>
+          <div class="logo-text-wrap">
+            <span class="logo-title" style="color:white;font-size:1.05rem;">Guardião</span>
+            <span class="logo-sub">Sistema de LGPD</span>
+          </div>
+        </a>
+        <p class="footer-desc">Conteúdo especializado em LGPD para o Brasil. Da teoria à prática, com foco em resultado real.</p>
+      </div>
+      <div>
+        <h4>Seções</h4>
+        <ul>
+          <li><a href="lgpd-descomplicada.html">LGPD Descomplicada</a></li>
+          <li><a href="noticias.html">Jurisprudência & Notícias</a></li>
+          <li><a href="downloads.html">Central de Downloads</a></li>
+          <li><a href="glossario.html">Glossário</a></li>
+          <li><a href="categorias.html">Categorias</a></li>
+          <li><a href="cursos.html">Cursos & Formação</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="categorias.html">Setor Público</a></li>
+          <li><a href="categorias.html">Gestão & Governança</a></li>
+          <li><a href="categorias.html">Segurança da Informação</a></li>
+          <li><a href="categorias.html">Direitos do Titular</a></li>
+          <li><a href="categorias.html">ANPD & Regulamentação</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contato</h4>
+        <ul>
+          <li>✉️ adriano.israel@live.com</li>
+          <li>📸 @adrianoisrael7</li>
+          <li>📍 Mato Grosso do Sul, Brasil</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Guardião — Sistema de LGPD · Adriano Israel · Todos os direitos reservados · Lei nº 13.709/2018</p>
+    </div>
+  </footer>
+
   <script src="../assets/js/script.js"></script>
 </body>
 </html>

@@ -3,23 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artigo | Blog LGPD</title>
-  <meta name="description" content="Leitura de artigo da série LGPD Descomplicada com visual completo do Blog LGPD." />
+  <title>Artigo | Guardião — Sistema de LGPD</title>
+  <meta name="description" content="Leitura de artigo da série Guardião LGPD — Proteção de Dados & Privacidade." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
+
+  <!-- TOPBAR -->
   <div class="topbar">
-    <span>📋 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Leia mais</a></span>
+    <span>🛡 ANPD publica nova resolução sobre cookies — <a href="noticias.html">Ler análise completa</a></span>
     <span class="topbar-right">📧 adriano.israel@live.com</span>
   </div>
 
+  <!-- HEADER -->
   <header class="header" id="header">
     <div class="container header-inner">
-      <div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div>
+      <a href="../index.html" class="logo">
+        <div class="logo-shield">
+          <span class="logo-shield-icon">🛡</span>
+        </div>
+        <div class="logo-text-wrap">
+          <span class="logo-title">Guardião</span>
+          <span class="logo-sub">Sistema de LGPD</span>
+        </div>
+      </a>
       <nav class="nav" id="nav">
-        <a href="../index.html" class="nav-link">Home</a>
+        <a href="../index.html" class="nav-link">Início</a>
         <a href="lgpd-descomplicada.html" class="nav-link">LGPD Descomplicada</a>
         <a href="noticias.html" class="nav-link">Jurisprudência & Notícias</a>
         <a href="downloads.html" class="nav-link">Downloads</a>
@@ -31,35 +42,54 @@
     </div>
   </header>
 
-  <section class="page-hero">
+  <!-- PAGE HERO -->
+  <div class="page-hero">
     <div class="container">
       <div class="hero-badge" id="articleBadge">Artigo</div>
       <h1 id="articleTitle">Carregando artigo...</h1>
-      <p id="articleDescription">O conteúdo será exibido com o estilo do Blog LGPD.</p>
+      <p id="articleDescription">O conteúdo será exibido em instantes.</p>
     </div>
-  </section>
+  </div>
 
+  <!-- CONTEÚDO DO ARTIGO -->
   <section class="section">
     <div class="container">
       <article id="articleContent" class="markdown-body">Carregando conteúdo...</article>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <div class="logo"><span class="logo-icon">⚖</span><div><span class="logo-title">Blog <strong>LGPD</strong></span><span class="logo-sub">Proteção de Dados & Privacidade</span></div></div>
-        <p class="footer-desc">Conteúdo especializado em LGPD para o Brasil.</p>
+        <a href="../index.html" class="logo" style="margin-bottom:12px;display:inline-flex;">
+          <div class="logo-shield" style="width:36px;height:36px;"><span class="logo-shield-icon" style="font-size:1.1rem;">🛡</span></div>
+          <div class="logo-text-wrap">
+            <span class="logo-title" style="color:white;font-size:1.05rem;">Guardião</span>
+            <span class="logo-sub">Sistema de LGPD</span>
+          </div>
+        </a>
+        <p class="footer-desc">Conteúdo especializado em LGPD para o Brasil. Da teoria à prática, com foco em resultado real.</p>
       </div>
       <div>
         <h4>Seções</h4>
         <ul>
           <li><a href="lgpd-descomplicada.html">LGPD Descomplicada</a></li>
-          <li><a href="noticias.html">Jurisprudência</a></li>
-          <li><a href="downloads.html">Downloads</a></li>
+          <li><a href="noticias.html">Jurisprudência & Notícias</a></li>
+          <li><a href="downloads.html">Central de Downloads</a></li>
           <li><a href="glossario.html">Glossário</a></li>
           <li><a href="categorias.html">Categorias</a></li>
-          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="cursos.html">Cursos & Formação</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Categorias</h4>
+        <ul>
+          <li><a href="categorias.html">Setor Público</a></li>
+          <li><a href="categorias.html">Gestão & Governança</a></li>
+          <li><a href="categorias.html">Segurança da Informação</a></li>
+          <li><a href="categorias.html">Direitos do Titular</a></li>
+          <li><a href="categorias.html">ANPD & Regulamentação</a></li>
         </ul>
       </div>
       <div>
@@ -71,39 +101,29 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom"><p>© 2025 Blog LGPD · Adriano Israel · Todos os direitos reservados</p></div>
+    <div class="footer-bottom">
+      <p>© 2025 Guardião — Sistema de LGPD · Adriano Israel · Todos os direitos reservados · Lei nº 13.709/2018</p>
+    </div>
   </footer>
 
   <script src="../assets/js/script.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js" integrity="sha384-0cHqWbVYLOQNJ8iDwNQ8Wl5+5QgQ4P1cK6+K5r1q8B8r8I6E8r8K8K8K8K8K8K8K" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" integrity="sha384-948ahk4ZmxYVYOc+rxN1H2gM1EJ2Duhp7uHtZ4WSLkV4Vtx5MUqnV+l7u9B+jFv+" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
   <script>
-    // Configurar Marked.js com opções de segurança
-    marked.setOptions({
-      breaks: true,
-      gfm: true,
-      headerIds: false, // Evitar IDs que podem ser usados para XSS
-      mangle: false,    // Não alterar URLs
-      sanitize: false,  // Vamos usar DOMPurify se disponível
-      smartLists: true,
-      smartypants: false,
-      xhtml: false
-    });
+    marked.setOptions({ breaks: true, gfm: true, headerIds: false, mangle: false, sanitize: false, smartLists: true });
 
-    // Função para sanitizar HTML se DOMPurify estiver disponível
     function sanitizeHtml(html) {
       if (typeof DOMPurify !== 'undefined') {
         return DOMPurify.sanitize(html, {
-          ALLOWED_TAGS: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li', 'blockquote', 'code', 'pre', 'hr', 'table', 'thead', 'tbody', 'tr', 'th', 'td'],
-          ALLOWED_ATTR: ['href', 'target', 'rel']
+          ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','br','strong','em','a','ul','ol','li','blockquote','code','pre','hr','table','thead','tbody','tr','th','td'],
+          ALLOWED_ATTR: ['href','target','rel']
         });
       }
-      return html; // Fallback se DOMPurify não estiver disponível
+      return html;
     }
 
     function setError(message) {
-      const target = document.getElementById('articleContent');
-      target.innerHTML = `<p>${message}</p>`;
+      document.getElementById('articleContent').innerHTML = `<p>${message}</p>`;
       document.getElementById('articleTitle').textContent = 'Erro ao carregar artigo';
     }
 
@@ -112,31 +132,21 @@
     if (!file) {
       setError('Nenhum arquivo de artigo foi informado.');
     } else {
-      // Converter caminho local para URL raw do GitHub
       if (file.startsWith('/blog-lgpd/')) {
-        // Remover /blog-lgpd/ do início e converter para raw.githubusercontent.com
-        const filePath = file.substring('/blog-lgpd/'.length);
-        file = `https://raw.githubusercontent.com/adrianois/blog-lgpd/main/${filePath}`;
+        file = `https://raw.githubusercontent.com/adrianois/blog-lgpd/main/${file.substring('/blog-lgpd/'.length)}`;
       } else if (!file.startsWith('http')) {
-        // Se for um caminho relativo, também converter
         file = `https://raw.githubusercontent.com/adrianois/blog-lgpd/main/${file.replace(/^\.\.\//, '')}`;
       }
-      
       fetch(file)
-        .then(response => {
-          if (!response.ok) throw new Error('Arquivo não encontrado');
-          return response.text();
-        })
+        .then(r => { if (!r.ok) throw new Error('Arquivo não encontrado'); return r.text(); })
         .then(markdown => {
           const html = marked.parse(markdown);
-          const sanitizedHtml = sanitizeHtml(html);
           const content = document.getElementById('articleContent');
-          content.innerHTML = sanitizedHtml;
-
+          content.innerHTML = sanitizeHtml(html);
           const firstHeading = content.querySelector('h1, h2, h3');
           if (firstHeading) {
             document.getElementById('articleTitle').textContent = firstHeading.textContent;
-            document.title = `${firstHeading.textContent} | Blog LGPD`;
+            document.title = `${firstHeading.textContent} | Guardião LGPD`;
           }
         })
         .catch(() => setError('Não foi possível carregar o artigo.'));
