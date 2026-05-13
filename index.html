@@ -299,10 +299,11 @@
         <h2>Newsletter Semanal</h2>
         <p>Resumo das novas decisões da ANPD, artigos e materiais exclusivos toda semana no seu e-mail.</p>
       </div>
-      <form class="newsletter-form" onsubmit="return false;">
-        <input type="email" placeholder="seu@email.com" required />
-        <button type="submit" class="btn btn-primary">Quero receber</button>
+      <form class="newsletter-form" id="newsletterForm" onsubmit="submitNewsletter(event)">
+        <input type="email" id="newsletterEmail" placeholder="seu@email.com" required autocomplete="email" />
+        <button type="submit" id="newsletterBtn" class="btn btn-primary">Quero receber</button>
       </form>
+      <p id="newsletterMsg" style="display:none; color:var(--cyan); font-size:0.85rem; font-weight:700; margin-top:10px;"></p>
     </div>
   </section>
 
@@ -313,7 +314,7 @@
       <div class="autor-info">
         <p class="autor-cargo">Fundador & Especialista — Guardião LGPD</p>
         <h2>Adriano Israel</h2>
-        <p>Especialista em proteção de dados com foco em setor público. Atuação em adequação de Câmaras Municipais, Prefeituras e órgãos públicos em Mato Grosso do Sul. Desenvolvedor de metodologia própria para implementação da LGPD.</p>
+        <p>Especialista em proteção de dados com foco em setor público. Atuação em adequação de Câmaras Municipais, Prefeituras e órgãos públicos em Mato Grosso do Sul. Desenvolvedor de metodologia própria para implementação da LGPD em órgãos com restrição orçamentária.</p>
         <div class="autor-contatos">
           <a href="mailto:adriano.israel@live.com">✉️ adriano.israel@live.com</a>
           <a href="https://instagram.com/adrianoisrael7" target="_blank">📸 @adrianoisrael7</a>
@@ -372,6 +373,7 @@
 
   <script src="assets/js/script.js"></script>
   <script>
+    // ── E-mail ofuscado ──────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', function() {
       const emailParts = ['adriano.israel', '@', 'live.com'];
       const fullEmail = emailParts.join('');
@@ -382,6 +384,76 @@
         el.addEventListener('click', () => { window.location.href = 'mailto:' + fullEmail; });
       }
     });
+
+    // ── Newsletter → Google Sheets via Apps Script ───────────────────
+    // INSTRUÇÕES DE CONFIGURAÇÃO:
+    // 1. Abra sua planilha Google Sheets (contato-site / aba Newsletter)
+    // 2. No menu: Extensões → Apps Script
+    // 3. Cole o conteúdo do arquivo "newsletter-apps-script.gs" fornecido
+    // 4. Clique em "Implantar" → "Nova implantação" → Tipo: "App da Web"
+    //    - Executar como: Eu mesmo
+    //    - Quem tem acesso: Qualquer pessoa
+    // 5. Copie a URL gerada e substitua APPS_SCRIPT_URL abaixo
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqmA7QHSbxz3yjy8NwiARkiNwsJusvo1oZgm0FSB0jFD9HjIKhR-jmIMENL0YY8aMj/exec';
+
+    async function submitNewsletter(e) {
+      e.preventDefault();
+
+      const emailInput = document.getElementById('newsletterEmail');
+      const btn        = document.getElementById('newsletterBtn');
+      const msg        = document.getElementById('newsletterMsg');
+      const email      = emailInput.value.trim();
+
+      // Validação básica
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
+
+      // Rate limit simples: máx 3 envios por hora por sessão
+      const key = 'nl_submissions';
+      const now = Date.now();
+      const history = JSON.parse(sessionStorage.getItem(key) || '[]')
+        .filter(t => now - t < 3_600_000);
+      if (history.length >= 3) {
+        showMsg(msg, '⚠ Muitas tentativas. Aguarde um momento.', '#f4a09a');
+        return;
+      }
+
+      // UI: carregando
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      msg.style.display = 'none';
+
+      try {
+        // Apps Script aceita GET com parâmetros (evita preflight CORS)
+        const url = `${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}&origem=index&ts=${now}`;
+        await fetch(url, { method: 'GET', mode: 'no-cors' });
+
+        // Registrar envio (no-cors não retorna resposta, assumimos sucesso)
+        history.push(now);
+        sessionStorage.setItem(key, JSON.stringify(history));
+
+        // UI: sucesso
+        showMsg(msg, '✅ Inscrito com sucesso! Obrigado.', 'var(--cyan)');
+        emailInput.value = '';
+        btn.textContent = '✅ Inscrito!';
+        setTimeout(() => {
+          btn.textContent = 'Quero receber';
+          btn.disabled = false;
+          msg.style.display = 'none';
+        }, 4000);
+
+      } catch {
+        showMsg(msg, '❌ Erro ao conectar. Tente novamente.', '#f4a09a');
+        btn.textContent = 'Quero receber';
+        btn.disabled = false;
+      }
+    }
+
+    function showMsg(el, text, color) {
+      el.textContent = text;
+      el.style.color = color;
+      el.style.display = 'block';
+    }
   </script>
 </body>
 </html>
+
