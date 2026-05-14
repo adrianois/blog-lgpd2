@@ -399,8 +399,7 @@
     // 5. Copie a URL gerada e substitua APPS_SCRIPT_URL abaixo
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqmA7QHSbxz3yjy8NwiARkiNwsJusvo1oZgm0FSB0jFD9HjIKhR-jmIMENL0YY8aMj/exec';
 
-    let newsletterSubmitted = false;
-    function submitNewsletter(e) {
+    async function submitNewsletter(e) {
       e.preventDefault();
 
       const emailInput = document.getElementById('newsletterEmail');
