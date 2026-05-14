@@ -399,7 +399,8 @@
     // 5. Copie a URL gerada e substitua APPS_SCRIPT_URL abaixo
     const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqmA7QHSbxz3yjy8NwiARkiNwsJusvo1oZgm0FSB0jFD9HjIKhR-jmIMENL0YY8aMj/exec';
 
-    async function submitNewsletter(e) {
+    let newsletterSubmitted = false;
+    function submitNewsletter(e) {
       e.preventDefault();
 
       const emailInput = document.getElementById('newsletterEmail');
@@ -425,30 +426,54 @@
       btn.textContent = 'Enviando...';
       msg.style.display = 'none';
 
-      try {
-        // Apps Script aceita GET com parâmetros (evita preflight CORS)
-        const url = `${APPS_SCRIPT_URL}?email=${encodeURIComponent(email)}&origem=index&ts=${now}`;
-        await fetch(url, { method: 'GET', mode: 'no-cors' });
+      // Cria iframe oculto para evitar bloqueio de CORS/AdBlocker
+      let iframe = document.getElementById('hidden_iframe_newsletter');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.name = 'hidden_iframe_newsletter';
+        iframe.id = 'hidden_iframe_newsletter';
+        iframe.style.display = 'none';
+        document.body.appendChild(iframe);
+        
+        iframe.onload = function() {
+          if (newsletterSubmitted) {
+            history.push(now);
+            sessionStorage.setItem(key, JSON.stringify(history));
 
-        // Registrar envio (no-cors não retorna resposta, assumimos sucesso)
-        history.push(now);
-        sessionStorage.setItem(key, JSON.stringify(history));
-
-        // UI: sucesso
-        showMsg(msg, '✅ Inscrito com sucesso! Obrigado.', 'var(--cyan)');
-        emailInput.value = '';
-        btn.textContent = '✅ Inscrito!';
-        setTimeout(() => {
-          btn.textContent = 'Quero receber';
-          btn.disabled = false;
-          msg.style.display = 'none';
-        }, 4000);
-
-      } catch {
-        showMsg(msg, '❌ Erro ao conectar. Tente novamente.', '#f4a09a');
-        btn.textContent = 'Quero receber';
-        btn.disabled = false;
+            // UI: sucesso
+            showMsg(msg, '✅ Inscrito com sucesso! Obrigado.', 'var(--cyan)');
+            emailInput.value = '';
+            btn.textContent = '✅ Inscrito!';
+            setTimeout(() => {
+              btn.textContent = 'Quero receber';
+              btn.disabled = false;
+              msg.style.display = 'none';
+            }, 4000);
+            newsletterSubmitted = false;
+          }
+        };
       }
+
+      const form = document.createElement('form');
+      form.action = APPS_SCRIPT_URL;
+      form.method = 'GET';
+      form.target = 'hidden_iframe_newsletter';
+      form.style.display = 'none';
+
+      const data = { email: email, origem: 'index', ts: now };
+      for (const k in data) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = k;
+        input.value = data[k];
+        form.appendChild(input);
+      }
+
+      document.body.appendChild(form);
+      newsletterSubmitted = true;
+      form.submit();
+      
+      setTimeout(() => form.remove(), 1000);
     }
 
     function showMsg(el, text, color) {
