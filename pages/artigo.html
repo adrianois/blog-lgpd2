@@ -160,7 +160,9 @@
     async function fetchMarkdown(url) {
       const env     = window.__ENV || {};
       const headers = {};
-      if (env.GITHUB_AUTH) headers['Authorization'] = env.GITHUB_AUTH;
+      if (env.GITHUB_AUTH && !env.GITHUB_AUTH.includes('SEU_TOKEN_AQUI') && env.GITHUB_AUTH.trim() !== 'token') {
+        headers['Authorization'] = env.GITHUB_AUTH;
+      }
 
       const r = await fetch(url, { headers });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);

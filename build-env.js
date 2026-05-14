@@ -49,7 +49,7 @@ const content = `/* AUTO-GERADO por build-env.js — NÃO EDITE MANUALMENTE */
 /* eslint-disable */
 window.__ENV = Object.freeze({
   GITHUB_RAW_BASE: "https://raw.githubusercontent.com/${vars.GITHUB_USER}/${vars.GITHUB_REPO}/${vars.GITHUB_BRANCH}",
-  GITHUB_AUTH:     "token ${vars.GITHUB_TOKEN}",
+  GITHUB_AUTH:     "${vars.GITHUB_TOKEN ? 'token ' + vars.GITHUB_TOKEN : ''}",
   NL_SCRIPT_URL:   "${vars.APPS_SCRIPT_NEWSLETTER}",
   CURSOS_SCRIPT_URL: "${vars.APPS_SCRIPT_CURSOS}",
 });
