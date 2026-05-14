@@ -2,9 +2,6 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://raw.githubusercontent.com;">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Cursos & Formação | Guardião — Sistema de LGPD</title>
   <meta name="description" content="Formações práticas em LGPD para servidores públicos, DPOs e consultores. Do básico à implementação completa.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -595,11 +592,14 @@
     </div>
   </div>
 
+  <script src="../assets/js/env.js"></script>
   <script src="../assets/js/script.js"></script>
   <script>
     // ── CONFIGURAÇÃO ─────────────────────────────────────────────────
     // Após publicar o Apps Script (.gs), cole a URL aqui:
-    const APPS_SCRIPT_URL_CURSOS = 'https://script.google.com/macros/s/AKfycbw-m-G6epWyR4EQDpiscipg85nSdalZ1psV7scksMPW-K77Pp1u2QkAA1-gJnOZ01Ix/exec';
+    // URL vem de window.__ENV.CURSOS_SCRIPT_URL (gerado pelo build-env.js)
+    // Configure APPS_SCRIPT_CURSOS nas env vars do Vercel.
+    const APPS_SCRIPT_URL_CURSOS = (window.__ENV || {}).CURSOS_SCRIPT_URL || '';
 
     let cursoAtual = '';
 
@@ -690,8 +690,7 @@
     }
 
     // ── Enviar inscrição ─────────────────────────────────────────────
-    let inscricaoSubmitted = false;
-    function enviarInscricao() {
+    async function enviarInscricao() {
       if (!validar()) return;
 
       const btn   = document.getElementById('btnEnviar');
@@ -699,48 +698,39 @@
       const email = document.getElementById('inputEmail').value.trim().toLowerCase();
       const tel   = document.getElementById('inputTelefone').value.trim();
 
+      if (!APPS_SCRIPT_URL_CURSOS) {
+        btn.disabled = false;
+        alert('Serviço indisponível no momento. Tente mais tarde.');
+        return;
+      }
+
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span>&nbsp; Enviando...';
 
-      // Cria iframe oculto para evitar bloqueio de CORS/AdBlocker
-      let iframe = document.getElementById('hidden_iframe_cursos');
-      if (!iframe) {
-        iframe = document.createElement('iframe');
-        iframe.name = 'hidden_iframe_cursos';
-        iframe.id = 'hidden_iframe_cursos';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-        
-        iframe.onload = function() {
-          if (inscricaoSubmitted) {
-            document.getElementById('modalFormWrap').style.display = 'none';
-            document.getElementById('modalSuccess').classList.add('show');
-            inscricaoSubmitted = false;
-          }
-        };
+      try {
+        const params = new URLSearchParams({
+          nome,
+          email,
+          telefone: tel,
+          curso:    cursoAtual,
+          ts:       Date.now()
+        });
+
+        // GET com no-cors evita bloqueio de CORS do Apps Script
+        await fetch(`${APPS_SCRIPT_URL_CURSOS}?${params}`, {
+          method: 'GET',
+          mode:   'no-cors'
+        });
+
+        // no-cors não devolve resposta — assumimos sucesso
+        document.getElementById('modalFormWrap').style.display = 'none';
+        document.getElementById('modalSuccess').classList.add('show');
+
+      } catch {
+        btn.disabled = false;
+        btn.innerHTML = 'Confirmar inscrição';
+        alert('Não foi possível enviar. Verifique sua conexão e tente novamente.');
       }
-
-      // Cria formulário e envia via iframe
-      const form = document.createElement('form');
-      form.action = APPS_SCRIPT_URL_CURSOS;
-      form.method = 'GET';
-      form.target = 'hidden_iframe_cursos';
-      form.style.display = 'none';
-
-      const data = { nome, email, telefone: tel, curso: cursoAtual, ts: Date.now() };
-      for (const k in data) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = k;
-        input.value = data[k];
-        form.appendChild(input);
-      }
-
-      document.body.appendChild(form);
-      inscricaoSubmitted = true;
-      form.submit();
-      
-      setTimeout(() => form.remove(), 1000);
     }
   </script>
 </body>

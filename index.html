@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Guardião | Sistema de LGPD — Proteção de Dados Descomplicada</title>
   <meta name="description" content="Sistema especializado em LGPD, privacidade e proteção de dados para setor público e privado. Conteúdo educativo, cursos e consultoria.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://raw.githubusercontent.com;">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -374,6 +371,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/env.js"></script>
   <script src="assets/js/script.js"></script>
   <script>
     // ── E-mail ofuscado ──────────────────────────────────────────────
@@ -389,30 +387,29 @@
     });
 
     // ── Newsletter → Google Sheets via Apps Script ───────────────────
-    // INSTRUÇÕES DE CONFIGURAÇÃO:
-    // 1. Abra sua planilha Google Sheets (contato-site / aba Newsletter)
-    // 2. No menu: Extensões → Apps Script
-    // 3. Cole o conteúdo do arquivo "newsletter-apps-script.gs" fornecido
-    // 4. Clique em "Implantar" → "Nova implantação" → Tipo: "App da Web"
-    //    - Executar como: Eu mesmo
-    //    - Quem tem acesso: Qualquer pessoa
-    // 5. Copie a URL gerada e substitua APPS_SCRIPT_URL abaixo
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqmA7QHSbxz3yjy8NwiARkiNwsJusvo1oZgm0FSB0jFD9HjIKhR-jmIMENL0YY8aMj/exec';
-
+    // A URL vem de window.__ENV.NL_SCRIPT_URL (gerada pelo build-env.js)
+    // Configure APPS_SCRIPT_NEWSLETTER nas variáveis de ambiente do Vercel.
     async function submitNewsletter(e) {
       e.preventDefault();
+
+      const env    = window.__ENV || {};
+      const scriptUrl = env.NL_SCRIPT_URL || '';
 
       const emailInput = document.getElementById('newsletterEmail');
       const btn        = document.getElementById('newsletterBtn');
       const msg        = document.getElementById('newsletterMsg');
       const email      = emailInput.value.trim();
 
-      // Validação básica
       if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return;
 
-      // Rate limit simples: máx 3 envios por hora por sessão
-      const key = 'nl_submissions';
-      const now = Date.now();
+      if (!scriptUrl) {
+        showMsg(msg, '⚠ Serviço indisponível no momento.', '#f4a09a');
+        return;
+      }
+
+      // Rate limit: máx 3 envios por hora por sessão
+      const key     = 'nl_submissions';
+      const now     = Date.now();
       const history = JSON.parse(sessionStorage.getItem(key) || '[]')
         .filter(t => now - t < 3_600_000);
       if (history.length >= 3) {
@@ -420,65 +417,37 @@
         return;
       }
 
-      // UI: carregando
-      btn.disabled = true;
+      btn.disabled    = true;
       btn.textContent = 'Enviando...';
       msg.style.display = 'none';
 
-      // Cria iframe oculto para evitar bloqueio de CORS/AdBlocker
-      let iframe = document.getElementById('hidden_iframe_newsletter');
-      if (!iframe) {
-        iframe = document.createElement('iframe');
-        iframe.name = 'hidden_iframe_newsletter';
-        iframe.id = 'hidden_iframe_newsletter';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
-        
-        iframe.onload = function() {
-          if (newsletterSubmitted) {
-            history.push(now);
-            sessionStorage.setItem(key, JSON.stringify(history));
+      try {
+        const url = `${scriptUrl}?email=${encodeURIComponent(email)}&origem=index&ts=${now}`;
+        await fetch(url, { method: 'GET', mode: 'no-cors' });
 
-            // UI: sucesso
-            showMsg(msg, '✅ Inscrito com sucesso! Obrigado.', 'var(--cyan)');
-            emailInput.value = '';
-            btn.textContent = '✅ Inscrito!';
-            setTimeout(() => {
-              btn.textContent = 'Quero receber';
-              btn.disabled = false;
-              msg.style.display = 'none';
-            }, 4000);
-            newsletterSubmitted = false;
-          }
-        };
+        history.push(now);
+        sessionStorage.setItem(key, JSON.stringify(history));
+
+        showMsg(msg, '✅ Inscrito com sucesso! Obrigado.', 'var(--cyan)');
+        emailInput.value = '';
+        btn.textContent  = '✅ Inscrito!';
+        setTimeout(() => {
+          btn.textContent = 'Quero receber';
+          btn.disabled    = false;
+          msg.style.display = 'none';
+        }, 4000);
+
+      } catch {
+        showMsg(msg, '❌ Erro ao conectar. Tente novamente.', '#f4a09a');
+        btn.textContent = 'Quero receber';
+        btn.disabled    = false;
       }
-
-      const form = document.createElement('form');
-      form.action = APPS_SCRIPT_URL;
-      form.method = 'GET';
-      form.target = 'hidden_iframe_newsletter';
-      form.style.display = 'none';
-
-      const data = { email: email, origem: 'index', ts: now };
-      for (const k in data) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = k;
-        input.value = data[k];
-        form.appendChild(input);
-      }
-
-      document.body.appendChild(form);
-      newsletterSubmitted = true;
-      form.submit();
-      
-      setTimeout(() => form.remove(), 1000);
     }
 
     function showMsg(el, text, color) {
-      el.textContent = text;
-      el.style.color = color;
-      el.style.display = 'block';
+      el.textContent    = text;
+      el.style.color    = color;
+      el.style.display  = 'block';
     }
   </script>
 </body>

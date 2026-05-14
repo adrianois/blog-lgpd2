@@ -1,0 +1,32 @@
+# ── Ambiente ────────────────────────────────────────────
+# NUNCA faça commit destes arquivos
+.env
+.env.local
+.env*.local
+
+# env.js é gerado automaticamente pelo build-env.js
+# Não commitar — o Vercel gera na hora do deploy
+assets/js/env.js
+
+# ── Node ─────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ── Build ────────────────────────────────────────────────
+dist/
+build/
+
+# ── IDE ──────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ── OS ───────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs ─────────────────────────────────────────────────
+*.log

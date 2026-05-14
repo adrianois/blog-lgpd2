@@ -3,9 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://raw.githubusercontent.com;">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Artigo | Guardião — Sistema de LGPD</title>
   <meta name="description" content="Leitura de artigo da série Guardião LGPD — Proteção de Dados & Privacidade." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,50 +106,95 @@
     </div>
   </footer>
 
+  <script src="../assets/js/env.js"></script>
   <script src="../assets/js/script.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3/dist/purify.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" crossorigin="anonymous"></script>
   <script>
     marked.setOptions({ breaks: true, gfm: true, headerIds: false, mangle: false, sanitize: false, smartLists: true });
 
+    // ── Helpers ──────────────────────────────────────────────────────
     function sanitizeHtml(html) {
       if (typeof DOMPurify !== 'undefined') {
         return DOMPurify.sanitize(html, {
-          ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','br','strong','em','a','ul','ol','li','blockquote','code','pre','hr','table','thead','tbody','tr','th','td'],
+          ALLOWED_TAGS: ['h1','h2','h3','h4','h5','h6','p','br','strong','em','a',
+                         'ul','ol','li','blockquote','code','pre','hr',
+                         'table','thead','tbody','tr','th','td'],
           ALLOWED_ATTR: ['href','target','rel']
         });
       }
       return html;
     }
 
+    function setLoading() {
+      document.getElementById('articleContent').innerHTML =
+        '<p style="color:var(--text-muted);text-align:center;padding:3rem 0;">⏳ Carregando artigo...</p>';
+    }
+
     function setError(message) {
-      document.getElementById('articleContent').innerHTML = `<p>${message}</p>`;
+      document.getElementById('articleContent').innerHTML =
+        `<div style="text-align:center;padding:3rem 0;">
+           <p style="font-size:1.5rem;margin-bottom:12px;">⚠️</p>
+           <p style="color:var(--text-muted)">${message}</p>
+         </div>`;
       document.getElementById('articleTitle').textContent = 'Erro ao carregar artigo';
     }
 
+    // ── Resolve URL do arquivo .md usando env.js ──────────────────────
+    function resolveFileUrl(file) {
+      const env  = window.__ENV || {};
+      const base = env.GITHUB_RAW_BASE ||
+                   'https://raw.githubusercontent.com/adrianois/blog-lgpd/main';
+
+      if (file.startsWith('http')) return file;
+
+      // Remove prefixo /blog-lgpd/ ou ../ e monta URL completa
+      const clean = file
+        .replace(/^\/blog-lgpd\//, '')
+        .replace(/^\.\.\//, '');
+
+      return `${base}/${clean}`;
+    }
+
+    // ── Fetch com Authorization para repositório privado ─────────────
+    async function fetchMarkdown(url) {
+      const env     = window.__ENV || {};
+      const headers = {};
+      if (env.GITHUB_AUTH) headers['Authorization'] = env.GITHUB_AUTH;
+
+      const r = await fetch(url, { headers });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.text();
+    }
+
+    // ── Ponto de entrada ──────────────────────────────────────────────
     const params = new URLSearchParams(window.location.search);
-    let file = params.get('file');
+    const file   = params.get('file');
+
     if (!file) {
       setError('Nenhum arquivo de artigo foi informado.');
     } else {
-      if (file.startsWith('/blog-lgpd/')) {
-        file = `https://raw.githubusercontent.com/adrianois/blog-lgpd/main/${file.substring('/blog-lgpd/'.length)}`;
-      } else if (!file.startsWith('http')) {
-        file = `https://raw.githubusercontent.com/adrianois/blog-lgpd/main/${file.replace(/^\.\.\//, '')}`;
-      }
-      fetch(file)
-        .then(r => { if (!r.ok) throw new Error('Arquivo não encontrado'); return r.text(); })
+      setLoading();
+      const url = resolveFileUrl(file);
+
+      fetchMarkdown(url)
         .then(markdown => {
-          const html = marked.parse(markdown);
-          const content = document.getElementById('articleContent');
-          content.innerHTML = sanitizeHtml(html);
-          const firstHeading = content.querySelector('h1, h2, h3');
-          if (firstHeading) {
-            document.getElementById('articleTitle').textContent = firstHeading.textContent;
-            document.title = `${firstHeading.textContent} | Guardião LGPD`;
+          const sanitized = sanitizeHtml(marked.parse(markdown));
+          const content   = document.getElementById('articleContent');
+          content.innerHTML = sanitized;
+
+          const heading = content.querySelector('h1, h2, h3');
+          if (heading) {
+            document.getElementById('articleTitle').textContent = heading.textContent;
+            document.title = `${heading.textContent} | Guardião LGPD`;
           }
+          // Remove o subtítulo de placeholder
+          document.getElementById('articleDescription').style.display = 'none';
         })
-        .catch(() => setError('Não foi possível carregar o artigo.'));
+        .catch(err => {
+          console.error('[artigo] fetch error:', err);
+          setError('Não foi possível carregar o artigo. Tente novamente mais tarde.');
+        });
     }
   </script>
 </body>
