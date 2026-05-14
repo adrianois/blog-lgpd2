@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Guardião | Sistema de LGPD — Proteção de Dados Descomplicada</title>
   <meta name="description" content="Sistema especializado em LGPD, privacidade e proteção de dados para setor público e privado. Conteúdo educativo, cursos e consultoria.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://raw.githubusercontent.com;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
@@ -394,7 +397,7 @@
     //    - Executar como: Eu mesmo
     //    - Quem tem acesso: Qualquer pessoa
     // 5. Copie a URL gerada e substitua APPS_SCRIPT_URL abaixo
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyqmA7QHSbxz3yjy8NwiARkiNwsJusvo1oZgm0FSB0jFD9HjIKhR-jmIMENL0YY8aMj/exec';
+    const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL;
 
     async function submitNewsletter(e) {
       e.preventDefault();

@@ -2,6 +2,9 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://script.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://script.google.com https://raw.githubusercontent.com;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Cursos & Formação | Guardião — Sistema de LGPD</title>
   <meta name="description" content="Formações práticas em LGPD para servidores públicos, DPOs e consultores. Do básico à implementação completa.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -596,7 +599,7 @@
   <script>
     // ── CONFIGURAÇÃO ─────────────────────────────────────────────────
     // Após publicar o Apps Script (.gs), cole a URL aqui:
-    const APPS_SCRIPT_URL_CURSOS = 'https://script.google.com/macros/s/AKfycbw-m-G6epWyR4EQDpiscipg85nSdalZ1psV7scksMPW-K77Pp1u2QkAA1-gJnOZ01Ix/exec';
+    const APPS_SCRIPT_URL_CURSOS = process.env.APPS_SCRIPT_URL_CURSOS;
 
     let cursoAtual = '';
 
