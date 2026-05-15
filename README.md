@@ -31,8 +31,8 @@ blog-lgpd/
 │   ├── glossario.html
 │   ├── lgpd-descomplicada.html
 │   └── noticias.html
-├── content/                # Conteúdo dos artigos (md)
-│   └── lgpd-descomplicada/ # Artigos da categoria LGPD Descomplicada (fácil)
+├── content/                # Conteúdo dos artigos
+│   └── lgpd-descomplicada/ # Artigos da categoria LGPD Descomplicada
 │       ├── 01-o-que-e-lgpd.md
 │       ├── 02-quais-dados-sao-protegidos.md
 │       ├── 03-bases-legais.md
