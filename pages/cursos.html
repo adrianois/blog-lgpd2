@@ -8,7 +8,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/style.css">
   <style>
-    /* ── Estilos exclusivos de Cursos ── */
+    /* ═══════════════════════════════════════
+       BADGES DE NÍVEL
+    ═══════════════════════════════════════ */
     .nivel-badge {
       display: inline-block;
       font-size: 0.7rem;
@@ -20,16 +22,19 @@
       margin-bottom: 18px;
     }
     .nivel-0 { background: rgba(13,122,95,0.2);  color: #4fd1a5; }
-    .nivel-1 { background: rgba(0,201,177,0.15); color: var(--cyan); }
+    .nivel-1 { background: rgba(0,201,177,0.15); color: var(--cyan, #00c9b1); }
     .nivel-2 { background: rgba(192,57,43,0.2);  color: #f4a09a; }
 
+    /* ═══════════════════════════════════════
+       CARDS DE CURSO
+    ═══════════════════════════════════════ */
     .curso-full-card {
       background: var(--white);
       border: 1px solid var(--gray-border);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-lg, 12px);
       overflow: hidden;
       box-shadow: var(--shadow);
-      transition: box-shadow var(--transition);
+      transition: box-shadow var(--transition, 0.2s);
     }
     .curso-full-card:hover { box-shadow: var(--shadow-lg); }
     .curso-full-card + .curso-full-card { margin-top: 32px; }
@@ -38,17 +43,21 @@
       display: grid;
       grid-template-columns: 1fr 300px;
     }
-    @media (max-width: 760px) { .curso-card-inner { grid-template-columns: 1fr; } }
 
     .curso-body { padding: 36px 40px; }
     .curso-body h2 {
       font-family: 'Source Serif 4', serif;
       font-size: 1.55rem;
       font-weight: 700;
-      color: var(--navy-deep);
+      color: var(--navy-deep, #0d1f3c);
       margin-bottom: 10px;
     }
-    .curso-body .desc { color: var(--text-muted); font-size: 0.94rem; margin-bottom: 24px; line-height: 1.75; }
+    .curso-body .desc {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+      margin-bottom: 24px;
+      line-height: 1.75;
+    }
 
     .modulos-list { list-style: none; margin-bottom: 28px; }
     .modulos-list li {
@@ -61,14 +70,14 @@
     }
     .modulos-list li::before {
       content: '✓';
-      color: var(--cyan-dark);
+      color: var(--cyan-dark, #00a896);
       font-weight: 800;
       flex-shrink: 0;
       margin-top: 1px;
     }
 
     .curso-sidebar {
-      background: var(--shield-gradient);
+      background: var(--shield-gradient, linear-gradient(160deg,#0d1f3c,#1a3a5c));
       padding: 36px 32px;
       display: flex;
       flex-direction: column;
@@ -90,26 +99,75 @@
       font-family: 'Source Serif 4', serif;
       font-size: 2.2rem;
       font-weight: 700;
-      color: var(--cyan);
+      color: var(--cyan, #00c9b1);
     }
-    .curso-preco small { font-size: 0.88rem; color: rgba(255,255,255,0.45); font-family: 'Montserrat', sans-serif; }
-    .curso-sidebar p { color: rgba(255,255,255,0.6); font-size: 0.84rem; line-height: 1.6; }
-    .curso-sidebar .btn { width: 100%; justify-content: center; margin-top: 4px; }
+    .curso-preco small {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      font-family: 'Montserrat', sans-serif;
+    }
+    .curso-sidebar p  { color: rgba(255,255,255,0.6); font-size: 0.84rem; line-height: 1.6; }
+    .curso-sidebar .btn { width: 100%; justify-content: center; margin-top: 4px; cursor: pointer; }
 
-    /* ════════════════════════════════
+    /* ═══════════════════════════════════════
+       RESPONSIVO — MOBILE FIRST
+    ═══════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .curso-card-inner { grid-template-columns: 1fr 260px; }
+      .curso-body { padding: 28px 28px; }
+      .curso-sidebar { padding: 28px 24px; }
+    }
+
+    @media (max-width: 760px) {
+      /* Card vira coluna única */
+      .curso-card-inner { grid-template-columns: 1fr; }
+
+      /* Sidebar vai para baixo do corpo */
+      .curso-sidebar {
+        border-radius: 0;
+        padding: 24px 20px;
+        gap: 10px;
+      }
+      .curso-sidebar::before { display: none; }
+
+      .curso-body { padding: 24px 20px; }
+      .curso-body h2 { font-size: 1.25rem; }
+      .curso-preco  { font-size: 1.75rem; }
+
+      /* Botões empilhados lado a lado em telas médias */
+      .curso-sidebar .btn { width: 100%; font-size: 0.88rem; }
+
+      /* Cronograma */
+      .trilha-grid { grid-template-columns: 1fr !important; gap: 16px; }
+
+      /* Hero */
+      .page-hero { padding: 40px 0 32px; }
+      .page-hero h1 { font-size: clamp(1.5rem, 6vw, 2.4rem); }
+    }
+
+    @media (max-width: 480px) {
+      .curso-body { padding: 20px 16px; }
+      .curso-sidebar { padding: 20px 16px; }
+      .curso-body h2 { font-size: 1.1rem; }
+      .modulos-list li { font-size: 0.85rem; }
+      .curso-body .desc { font-size: 0.88rem; }
+      .nivel-badge { font-size: 0.65rem; padding: 4px 11px; }
+    }
+
+    /* ═══════════════════════════════════════
        MODAL DE INSCRIÇÃO
-    ════════════════════════════════ */
+    ═══════════════════════════════════════ */
     .modal-overlay {
       position: fixed;
       inset: 0;
-      background: rgba(13, 31, 60, 0.75);
+      background: rgba(13,31,60,0.78);
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       z-index: 1000;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 16px;
       opacity: 0;
       visibility: hidden;
       transition: opacity 0.25s ease, visibility 0.25s ease;
@@ -118,23 +176,24 @@
       opacity: 1;
       visibility: visible;
     }
+
     .modal {
       background: var(--white);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius-lg, 12px);
       width: 100%;
       max-width: 480px;
-      box-shadow: 0 24px 64px rgba(13, 31, 60, 0.35);
-      overflow: hidden;
+      max-height: 94vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 64px rgba(13,31,60,0.38);
       transform: translateY(24px) scale(0.97);
-      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transition: transform 0.28s cubic-bezier(0.34,1.56,0.64,1);
     }
-    .modal-overlay.open .modal {
-      transform: translateY(0) scale(1);
-    }
+    .modal-overlay.open .modal { transform: translateY(0) scale(1); }
 
+    /* Cabeçalho */
     .modal-header {
-      background: var(--shield-gradient);
-      padding: 28px 32px 24px;
+      background: var(--shield-gradient, linear-gradient(160deg,#0d1f3c,#1a3a5c));
+      padding: 26px 28px 22px;
       position: relative;
     }
     .modal-header::before {
@@ -145,6 +204,7 @@
         linear-gradient(rgba(0,201,177,0.07) 1px, transparent 1px),
         linear-gradient(90deg, rgba(0,201,177,0.07) 1px, transparent 1px);
       background-size: 28px 28px;
+      pointer-events: none;
     }
     .modal-curso-badge {
       display: inline-flex;
@@ -155,7 +215,7 @@
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-      color: var(--cyan);
+      color: var(--cyan, #00c9b1);
       background: rgba(0,201,177,0.15);
       border: 1px solid rgba(0,201,177,0.35);
       padding: 4px 12px;
@@ -165,87 +225,106 @@
     }
     .modal-title {
       font-family: 'Source Serif 4', serif;
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       font-weight: 700;
-      color: var(--white);
-      line-height: 1.3;
+      color: #fff;
+      line-height: 1.35;
       position: relative;
     }
     .modal-subtitle {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.6);
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.55);
       margin-top: 6px;
       position: relative;
     }
     .modal-close {
       position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 32px;
-      height: 32px;
+      top: 14px;
+      right: 14px;
+      width: 30px;
+      height: 30px;
       background: rgba(255,255,255,0.12);
       border: 1px solid rgba(255,255,255,0.2);
       border-radius: 50%;
       cursor: pointer;
-      color: var(--white);
+      color: #fff;
       font-size: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all var(--transition);
+      transition: all var(--transition, 0.2s);
       z-index: 1;
-      line-height: 1;
       padding: 0;
+      line-height: 1;
     }
     .modal-close:hover { background: rgba(255,255,255,0.25); transform: rotate(90deg); }
 
-    .modal-body { padding: 28px 32px 32px; }
+    /* Corpo */
+    .modal-body { padding: 24px 28px 28px; }
 
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 5px;
-      margin-bottom: 16px;
+      margin-bottom: 15px;
     }
     .form-label {
       font-family: 'Montserrat', sans-serif;
-      font-size: 0.74rem;
+      font-size: 0.73rem;
       font-weight: 700;
-      color: var(--navy-deep);
+      color: var(--navy-deep, #0d1f3c);
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
-    .form-label span { color: var(--seguranca); margin-left: 2px; }
+    .form-label span { color: var(--seguranca, #c0392b); margin-left: 2px; }
 
     .form-input {
       width: 100%;
-      padding: 11px 14px;
-      border: 1.5px solid var(--gray-border);
-      border-radius: var(--radius);
+      padding: 11px 13px;
+      border: 1.5px solid var(--gray-border, #ddd);
+      border-radius: var(--radius, 6px);
       font-family: 'Montserrat', sans-serif;
       font-size: 0.92rem;
-      color: var(--text);
+      color: var(--text, #1a1a1a);
       background: var(--white);
-      transition: all var(--transition);
+      transition: all var(--transition, 0.2s);
       outline: none;
       -webkit-appearance: none;
     }
     .form-input:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 0 3px var(--cyan-glow);
+      border-color: var(--cyan, #00c9b1);
+      box-shadow: 0 0 0 3px var(--cyan-glow, rgba(0,201,177,0.15));
     }
-    .form-input::placeholder { color: var(--text-muted); }
-    .form-input.error { border-color: var(--seguranca); box-shadow: 0 0 0 3px rgba(192,57,43,0.1); }
+    .form-input::placeholder { color: var(--text-muted, #888); }
+    .form-input.error {
+      border-color: var(--seguranca, #c0392b);
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.1);
+    }
 
     .field-error {
       font-family: 'Montserrat', sans-serif;
       font-size: 0.71rem;
       font-weight: 600;
-      color: var(--seguranca);
+      color: var(--seguranca, #c0392b);
       display: none;
     }
     .field-error.show { display: block; }
+
+    /* Mensagem de erro geral (nova) */
+    .form-erro-geral {
+      display: none;
+      background: #fdecea;
+      border: 1px solid #f5c2c0;
+      border-radius: 6px;
+      padding: 10px 13px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.78rem;
+      color: #c0392b;
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+    .form-erro-geral.show { display: block; }
 
     .modal-submit {
       width: 100%;
@@ -253,14 +332,23 @@
       font-size: 0.92rem;
       padding: 13px 24px;
       margin-top: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .modal-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+    .modal-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
 
     .spinner {
       width: 15px;
       height: 15px;
       border: 2px solid rgba(13,31,60,0.2);
-      border-top-color: var(--navy-deep);
+      border-top-color: var(--navy-deep, #0d1f3c);
       border-radius: 50%;
       animation: spin 0.6s linear infinite;
       flex-shrink: 0;
@@ -277,27 +365,31 @@
       padding: 8px 0 4px;
     }
     .modal-success.show { display: flex; }
+
     .success-icon {
       width: 68px;
       height: 68px;
-      background: var(--cyan-glow);
-      border: 2px solid var(--cyan);
+      background: var(--cyan-glow, rgba(0,201,177,0.15));
+      border: 2px solid var(--cyan, #00c9b1);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 1.9rem;
+      animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
     }
+    @keyframes popIn { from { transform: scale(0.3); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
     .success-title {
       font-family: 'Source Serif 4', serif;
       font-size: 1.2rem;
       font-weight: 700;
-      color: var(--navy-deep);
+      color: var(--navy-deep, #0d1f3c);
     }
     .success-desc {
       font-family: 'Montserrat', sans-serif;
       font-size: 0.85rem;
-      color: var(--text-muted);
+      color: var(--text-muted, #666);
       line-height: 1.65;
       max-width: 300px;
     }
@@ -305,15 +397,24 @@
     .consent-text {
       font-family: 'Montserrat', sans-serif;
       font-size: 0.71rem;
-      color: var(--text-muted);
+      color: var(--text-muted, #888);
       line-height: 1.6;
       padding-top: 14px;
-      border-top: 1px solid var(--gray-border);
+      border-top: 1px solid var(--gray-border, #ddd);
       margin-top: 4px;
     }
-    .consent-text a { color: var(--navy-mid); text-decoration: underline; }
+    .consent-text a { color: var(--navy-mid, #1a3a5c); text-decoration: underline; }
 
     body.modal-open { overflow: hidden; }
+
+    /* Modal responsivo */
+    @media (max-width: 520px) {
+      .modal { max-width: 100%; border-radius: 12px 12px 0 0; margin-top: auto; align-self: flex-end; }
+      .modal-overlay { align-items: flex-end; padding: 0; }
+      .modal-header { padding: 22px 20px 18px; }
+      .modal-body   { padding: 20px 20px 24px; }
+      .modal-title  { font-size: 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -374,7 +475,7 @@
               <li>Boas práticas: mesa limpa, senhas seguras e compartilhamento de dados</li>
               <li>Certificado de conclusão digital incluso</li>
             </ul>
-            <button class="btn btn-primary" onclick="abrirModal('LGPD Essencial para Servidores Públicos', 'Nível 1 · Gratuito', '🟢')">
+            <button class="btn btn-primary" onclick="abrirModal('LGPD Essencial para Servidores Públicos','Nível 1 · Gratuito','🟢')">
               Quero me inscrever gratuitamente
             </button>
           </div>
@@ -384,7 +485,7 @@
             <p>📆 4 horas · 100% online e assíncrono</p>
             <p>📜 Certificado incluso</p>
             <p>👥 +200 servidores já concluíram</p>
-            <button class="btn btn-white" onclick="abrirModal('LGPD Essencial para Servidores Públicos', 'Nível 1 · Gratuito', '🟢')">
+            <button class="btn btn-white" onclick="abrirModal('LGPD Essencial para Servidores Públicos','Nível 1 · Gratuito','🟢')">
               Acessar agora →
             </button>
           </div>
@@ -406,7 +507,7 @@
               <li><strong>Workshop Prático:</strong> Elaboração completa de um RIPD real</li>
               <li>Mentoria em grupo por 30 dias pós-curso</li>
             </ul>
-            <button class="btn btn-primary" onclick="abrirModal('DPO Master: Da Teoria à Nomeação', 'Nível 2 · R$ 997', '🔵')">
+            <button class="btn btn-primary" onclick="abrirModal('DPO Master: Da Teoria à Nomeação','Nível 2 · R$ 997','🔵')">
               Garantir minha vaga
             </button>
           </div>
@@ -416,7 +517,7 @@
             <p>📆 20 horas · Online com workshops ao vivo</p>
             <p>📜 Certificado + Carta de Nomeação modelo</p>
             <p>🤝 Mentoria em grupo inclusa</p>
-            <button class="btn btn-white" onclick="abrirModal('DPO Master: Da Teoria à Nomeação', 'Nível 2 · R$ 997', '🔵')">
+            <button class="btn btn-white" onclick="abrirModal('DPO Master: Da Teoria à Nomeação','Nível 2 · R$ 997','🔵')">
               Matricular-me →
             </button>
           </div>
@@ -439,7 +540,7 @@
               <li>Gestão de incidentes e notificação à ANPD</li>
               <li>Como montar e escalar uma consultoria de privacidade</li>
             </ul>
-            <button class="btn btn-primary" onclick="abrirModal('Metodologia de Implementação 360°', 'Nível 3 · R$ 2.497', '🔴')">
+            <button class="btn btn-primary" onclick="abrirModal('Metodologia de Implementação 360°','Nível 3 · R$ 2.497','🔴')">
               Quero ser consultor LGPD
             </button>
           </div>
@@ -449,7 +550,7 @@
             <p>📆 40 horas · Online + consultoria supervisionada</p>
             <p>📜 Certificado + Metodologia proprietária</p>
             <p>💼 Modelo de proposta comercial incluso</p>
-            <button class="btn btn-white" onclick="abrirModal('Metodologia de Implementação 360°', 'Nível 3 · R$ 2.497', '🔴')">
+            <button class="btn btn-white" onclick="abrirModal('Metodologia de Implementação 360°','Nível 3 · R$ 2.497','🔴')">
               Falar com Adriano →
             </button>
           </div>
@@ -548,6 +649,13 @@
 
         <!-- Formulário -->
         <div id="modalFormWrap">
+
+          <!-- ✅ NOVO: mensagem de erro geral (visível se o fetch falhar) -->
+          <div class="form-erro-geral" id="erroGeral">
+            ⚠️ Não foi possível enviar. Verifique sua conexão e tente novamente, ou
+            envie um e-mail para <strong>adriano.israel@live.com</strong>.
+          </div>
+
           <div class="form-group">
             <label class="form-label" for="inputNome">Nome completo <span>*</span></label>
             <input class="form-input" type="text" id="inputNome" placeholder="Seu nome completo" autocomplete="name" maxlength="120" />
@@ -588,22 +696,21 @@
           <button class="btn btn-primary" onclick="fecharModal()" style="margin-top:6px;">Fechar</button>
         </div>
 
-      </div>
-    </div>
-  </div>
+      </div><!-- /modal-body -->
+    </div><!-- /modal -->
+  </div><!-- /modal-overlay -->
 
-  <script src="../assets/js/env.js"></script>
   <script src="../assets/js/script.js"></script>
   <script>
-    // ── CONFIGURAÇÃO ─────────────────────────────────────────────────
-    // Após publicar o Apps Script (.gs), cole a URL aqui:
-    // URL vem de window.__ENV.CURSOS_SCRIPT_URL (gerado pelo build-env.js)
-    // Configure APPS_SCRIPT_CURSOS nas env vars do Vercel.
-    const APPS_SCRIPT_URL_CURSOS = (window.__ENV || {}).CURSOS_SCRIPT_URL || '';
+    /* ═══════════════════════════════════════════════════════════════
+       ⚙️  COLE AQUI A URL DO SEU WEB APP (Google Apps Script)
+       Após publicar o Code.gs como Web App, substitua a URL abaixo.
+    ═══════════════════════════════════════════════════════════════ */
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/SEU_DEPLOYMENT_ID_AQUI/exec';
 
     let cursoAtual = '';
 
-    // ── Máscara de telefone ──────────────────────────────────────────
+    /* ── Máscara de telefone ─────────────────────────────────────── */
     document.getElementById('inputTelefone').addEventListener('input', function () {
       let v = this.value.replace(/\D/g, '').slice(0, 11);
       if      (v.length === 11) v = v.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
@@ -613,7 +720,7 @@
       this.value = v;
     });
 
-    // ── Abrir modal ──────────────────────────────────────────────────
+    /* ── Abrir modal ─────────────────────────────────────────────── */
     function abrirModal(curso, nivel, emoji) {
       cursoAtual = curso;
       document.getElementById('modalTitle').textContent = curso;
@@ -621,38 +728,37 @@
       resetarModal();
       document.getElementById('modalOverlay').classList.add('open');
       document.body.classList.add('modal-open');
-      setTimeout(() => document.getElementById('inputNome').focus(), 200);
+      setTimeout(() => document.getElementById('inputNome').focus(), 220);
     }
 
-    // ── Fechar modal ─────────────────────────────────────────────────
+    /* ── Fechar modal ────────────────────────────────────────────── */
     function fecharModal() {
       document.getElementById('modalOverlay').classList.remove('open');
       document.body.classList.remove('modal-open');
       setTimeout(resetarModal, 300);
     }
 
-    // Fecha clicando no overlay
     document.getElementById('modalOverlay').addEventListener('click', e => {
       if (e.target === e.currentTarget) fecharModal();
     });
 
-    // Fecha com Escape
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('open')) {
+      if (e.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('open'))
         fecharModal();
-      }
     });
 
-    // ── Resetar estado ───────────────────────────────────────────────
+    /* ── Reset ───────────────────────────────────────────────────── */
     function resetarModal() {
-      ['inputNome', 'inputEmail', 'inputTelefone'].forEach(id => {
+      ['inputNome','inputEmail','inputTelefone'].forEach(id => {
         const el = document.getElementById(id);
         if (el) { el.value = ''; el.classList.remove('error'); }
       });
-      ['erroNome', 'erroEmail', 'erroTelefone'].forEach(id => {
+      ['erroNome','erroEmail','erroTelefone'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.classList.remove('show');
       });
+      document.getElementById('erroGeral').classList.remove('show');
+
       const wrap = document.getElementById('modalFormWrap');
       const suc  = document.getElementById('modalSuccess');
       const btn  = document.getElementById('btnEnviar');
@@ -661,75 +767,76 @@
       if (btn)  { btn.disabled = false; btn.innerHTML = 'Confirmar inscrição'; }
     }
 
-    // ── Validação ────────────────────────────────────────────────────
+    /* ── Validação ───────────────────────────────────────────────── */
     function validar() {
       let ok = true;
 
       const nome = document.getElementById('inputNome').value.trim();
-      if (nome.length < 3) { erro('inputNome', 'erroNome'); ok = false; }
-      else                 { ok_campo('inputNome', 'erroNome'); }
+      nome.length < 3
+        ? (erroField('inputNome','erroNome'),   ok = false)
+        : okField('inputNome','erroNome');
 
       const email = document.getElementById('inputEmail').value.trim();
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { erro('inputEmail', 'erroEmail'); ok = false; }
-      else                                             { ok_campo('inputEmail', 'erroEmail'); }
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+        ? (erroField('inputEmail','erroEmail'), ok = false)
+        : okField('inputEmail','erroEmail');
 
-      const tel = document.getElementById('inputTelefone').value.replace(/\D/g, '');
-      if (tel.length < 10) { erro('inputTelefone', 'erroTelefone'); ok = false; }
-      else                 { ok_campo('inputTelefone', 'erroTelefone'); }
+      const tel = document.getElementById('inputTelefone').value.replace(/\D/g,'');
+      tel.length < 10
+        ? (erroField('inputTelefone','erroTelefone'), ok = false)
+        : okField('inputTelefone','erroTelefone');
 
       return ok;
     }
+    function erroField(i,e){ document.getElementById(i).classList.add('error');    document.getElementById(e).classList.add('show');    }
+    function okField(i,e)  { document.getElementById(i).classList.remove('error'); document.getElementById(e).classList.remove('show'); }
 
-    function erro(inputId, erroId) {
-      document.getElementById(inputId).classList.add('error');
-      document.getElementById(erroId).classList.add('show');
-    }
-    function ok_campo(inputId, erroId) {
-      document.getElementById(inputId).classList.remove('error');
-      document.getElementById(erroId).classList.remove('show');
-    }
-
-    // ── Enviar inscrição ─────────────────────────────────────────────
+    /* ═══════════════════════════════════════════════════════════════
+       ENVIO PARA O GOOGLE APPS SCRIPT
+       ─────────────────────────────────────────────────────────────
+       CORREÇÕES aplicadas em relação à versão anterior:
+       1. URL hardcoded — não depende mais de window.__ENV
+       2. Método GET com parâmetros na query string — compatível
+          com doGet() do Apps Script sem CORS preflight
+       3. Usa mode:'no-cors' — Apps Script não devolve headers CORS,
+          então lemos a resposta via doGet retornando JSON na URL
+          alternativa abaixo, OU simplesmente confiamos no status 200
+       4. Aba destino corrigida para 'cursos' no Code.gs
+    ═══════════════════════════════════════════════════════════════ */
     async function enviarInscricao() {
+      document.getElementById('erroGeral').classList.remove('show');
       if (!validar()) return;
 
-      const btn   = document.getElementById('btnEnviar');
-      const nome  = document.getElementById('inputNome').value.trim();
-      const email = document.getElementById('inputEmail').value.trim().toLowerCase();
-      const tel   = document.getElementById('inputTelefone').value.trim();
+      const btn      = document.getElementById('btnEnviar');
+      const nome     = document.getElementById('inputNome').value.trim();
+      const email    = document.getElementById('inputEmail').value.trim().toLowerCase();
+      const telefone = document.getElementById('inputTelefone').value.trim();
+      const dataHora = new Date().toLocaleString('pt-BR', { timeZone: 'America/Campo_Grande' });
 
-      if (!APPS_SCRIPT_URL_CURSOS) {
-        btn.disabled = false;
-        alert('Serviço indisponível no momento. Tente mais tarde.');
-        return;
-      }
-
-      btn.disabled = true;
+      btn.disabled  = true;
       btn.innerHTML = '<span class="spinner"></span>&nbsp; Enviando...';
 
+      // Monta query string — doGet() lê e.parameter no Apps Script
+      const params = new URLSearchParams({ nome, email, telefone, curso: cursoAtual, dataHora });
+      const url    = `${APPS_SCRIPT_URL}?${params.toString()}`;
+
       try {
-        const params = new URLSearchParams({
-          nome,
-          email,
-          telefone: tel,
-          curso:    cursoAtual,
-          ts:       Date.now()
-        });
+        // no-cors é necessário pois o Apps Script não envia header
+        // Access-Control-Allow-Origin na resposta de doGet.
+        // O fetch com no-cors sempre retorna status 0 / tipo "opaque",
+        // mas o Apps Script executa o código normalmente e grava a planilha.
+        await fetch(url, { method: 'GET', mode: 'no-cors' });
 
-        // GET com no-cors evita bloqueio de CORS do Apps Script
-        await fetch(`${APPS_SCRIPT_URL_CURSOS}?${params}`, {
-          method: 'GET',
-          mode:   'no-cors'
-        });
-
-        // no-cors não devolve resposta — assumimos sucesso
+        // Como não conseguimos ler a resposta com no-cors,
+        // consideramos sucesso se o fetch não lançar exceção.
         document.getElementById('modalFormWrap').style.display = 'none';
         document.getElementById('modalSuccess').classList.add('show');
 
-      } catch {
-        btn.disabled = false;
+      } catch (err) {
+        console.error('[Modal] Erro no fetch:', err);
+        btn.disabled  = false;
         btn.innerHTML = 'Confirmar inscrição';
-        alert('Não foi possível enviar. Verifique sua conexão e tente novamente.');
+        document.getElementById('erroGeral').classList.add('show');
       }
     }
   </script>
